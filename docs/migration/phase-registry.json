@@ -2,7 +2,25 @@
   "bundles": {
     "215-220": {
       "label": "Bigger Pass A",
-      "phases": [215, 216, 217, 218, 219, 220]
+      "phases": [
+        215,
+        216,
+        217,
+        218,
+        219,
+        220
+      ]
+    },
+    "221-226": {
+      "label": "Bigger Pass B",
+      "phases": [
+        221,
+        222,
+        223,
+        224,
+        225,
+        226
+      ]
     }
   },
   "phases": {
@@ -62,6 +80,73 @@
       "evidenceDocs": [
         "docs/migration/current-phase.md",
         "docs/NATIVE_CLIENT_PHASE_STATUS.md"
+      ]
+    },
+    "221": {
+      "title": "Bundle B Registry Expansion",
+      "checks": [
+        "phase_registry_exists",
+        "docs_hierarchy"
+      ],
+      "evidenceDocs": [
+        "docs/migration/phase-registry.json",
+        "docs/migration/overview.md",
+        "docs/migration/checklists.md"
+      ]
+    },
+    "222": {
+      "title": "Bundle B Archive Continuity",
+      "checks": [
+        "archive_integrity",
+        "legacy_phase_verifier_archive"
+      ],
+      "evidenceDocs": [
+        "docs/migration/archive/README.md",
+        "scripts/migration/archive/phase_verifiers/verify_phase119_interaction_session_factory_runtime_bundle_factory_extraction.py"
+      ]
+    },
+    "223": {
+      "title": "Bundle B Command Surface Consolidation",
+      "checks": [
+        "tasks_phase_command_consolidation",
+        "phase_registry_exists"
+      ],
+      "evidenceDocs": [
+        "TASKS.md",
+        "scripts/verify_migration.py"
+      ]
+    },
+    "224": {
+      "title": "Bundle B Runtime Guard Continuity",
+      "checks": [
+        "runtime_bundle_factory"
+      ],
+      "evidenceDocs": [
+        "runelite-plugin/src/main/java/com/xptool/sessions/InteractionSessionFactoryRuntimeBundleFactory.java"
+      ]
+    },
+    "225": {
+      "title": "Bundle B Status Synchronization",
+      "checks": [
+        "current_phase_snapshot",
+        "phase_registry_exists"
+      ],
+      "evidenceDocs": [
+        "docs/migration/current-phase.md",
+        "docs/NATIVE_CLIENT_PHASE_STATUS.md"
+      ]
+    },
+    "226": {
+      "title": "Bundle B Signoff",
+      "checks": [
+        "current_phase_snapshot",
+        "phase_registry_exists",
+        "tasks_phase_command_consolidation"
+      ],
+      "evidenceDocs": [
+        "docs/migration/current-phase.md",
+        "docs/NATIVE_CLIENT_PHASE_STATUS.md",
+        "TASKS.md"
       ]
     }
   }

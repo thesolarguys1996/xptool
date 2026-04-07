@@ -3,12 +3,12 @@
 Last updated: 2026-04-07
 
 ## Snapshot
-- Latest started phase: `220`
-- Latest completed phase: `220`
+- Latest started phase: `226`
+- Latest completed phase: `226`
 - Migration status: `ACTIVE` (native-first progression with compatibility shims still present)
 
 ## Current Target
-- Continue bundled migration passes using registry-backed verifier bundles (starting after `215-220`).
+- Continue bundled migration passes using registry-backed verifier bundles (starting after `221-226`).
 - Keep native cutover + soak gates green on every push.
 
 ## Status Source
