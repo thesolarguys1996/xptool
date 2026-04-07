@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import re
+import subprocess
 from pathlib import Path
 
 
@@ -22,12 +23,16 @@ def _read(path: Path) -> str:
 
 
 def _collect_java_inventory() -> tuple[int, int, int]:
-    java_root = PROJECT_ROOT / "runelite-plugin/src/main/java"
-    files = list(java_root.rglob("*.java"))
+    tracked = subprocess.check_output(
+        ["git", "ls-tree", "-r", "--name-only", "HEAD", "--", "runelite-plugin/src/main/java"],
+        cwd=PROJECT_ROOT,
+        text=True,
+    ).splitlines()
+    files = [path for path in tracked if path.endswith(".java")]
     total = len(files)
     delete_first = 0
     for file_path in files:
-        name = file_path.name
+        name = Path(file_path).name
         if "HostAdapter" in name or "Wiring" in name or "Bundle" in name or "Inputs" in name:
             delete_first += 1
     port_first = total - delete_first

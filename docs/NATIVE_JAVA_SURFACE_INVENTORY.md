@@ -4,7 +4,7 @@ Last updated: 2026-04-07
 
 ## Snapshot
 - Scope: `runelite-plugin/src/main/java`
-- Total Java files remaining: `378`
+- Total Java files remaining: `374`
 - Removed already: `XPToolPlugin.java`, `XPToolConfig.java`
 
 ## Package Inventory (Port vs Delete)
@@ -804,7 +804,7 @@ Last updated: 2026-04-07
   - `InteractionSessionFactoryEntryRuntimeSessionFactoryTest.java` (covers focused entry runtime session factory entrypoint continuity)
 ## Port-First Behavior Set
 - Remaining files after delete-first scaffolding set:
-- Count: `325` files
+- Count: `321` files
 - These represent behavior/policy/runtime logic that must exist in native-owned components before Java removal.
 
 ## Phase 10.2 Decision
