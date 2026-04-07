@@ -712,400 +712,400 @@ Phase status board: `docs/NATIVE_CLIENT_PHASE_STATUS.md`
 - Native soak report gate:
   - `python scripts/verify_native_soak_report.py --min-iterations 6 --max-failures 0 --max-age-hours 48`
 - Phase 12 native-default gate:
-  - `python scripts/verify_phase12_native_default.py`
+  - `python scripts/verify_migration.py --phase 12`
 - Phase 13 executor-decomposition gate:
-  - `python scripts/verify_phase13_executor_decomposition.py`
+  - `python scripts/verify_migration.py --phase 13`
 - Phase 14 executor-utility-decomposition gate:
-  - `python scripts/verify_phase14_executor_utility_decomposition.py`
+  - `python scripts/verify_migration.py --phase 14`
 - Phase 15 drop-runtime-decomposition gate:
-  - `python scripts/verify_phase15_drop_runtime_decomposition.py`
+  - `python scripts/verify_migration.py --phase 15`
 - Phase 16 motor pending-telemetry gate:
-  - `python scripts/verify_phase16_motor_pending_telemetry.py`
+  - `python scripts/verify_migration.py --phase 16`
 - Phase 17 motor terminal decomposition gate:
-  - `python scripts/verify_phase17_motor_terminal_decomposition.py`
+  - `python scripts/verify_migration.py --phase 17`
 - Phase 18 motor dispatch admission gate:
-  - `python scripts/verify_phase18_motor_dispatch_admission.py`
+  - `python scripts/verify_migration.py --phase 18`
 - Phase 19 motor dispatch context gate:
-  - `python scripts/verify_phase19_motor_dispatch_context.py`
+  - `python scripts/verify_migration.py --phase 19`
 - Phase 20 interaction click telemetry gate:
-  - `python scripts/verify_phase20_interaction_click_telemetry.py`
+  - `python scripts/verify_migration.py --phase 20`
 - Phase 21 interaction anchor resolution gate:
-  - `python scripts/verify_phase21_interaction_anchor_resolution.py`
+  - `python scripts/verify_migration.py --phase 21`
 - Phase 22 interaction click event packaging gate:
-  - `python scripts/verify_phase22_interaction_click_event_packaging.py`
+  - `python scripts/verify_migration.py --phase 22`
 - Phase 23 interaction post-click settle gate:
-  - `python scripts/verify_phase23_interaction_post_click_settle.py`
+  - `python scripts/verify_migration.py --phase 23`
 - Phase 24 interaction session ownership gate:
-  - `python scripts/verify_phase24_interaction_session_ownership.py`
+  - `python scripts/verify_migration.py --phase 24`
 - Phase 25 interaction session host-factory gate:
-  - `python scripts/verify_phase25_interaction_session_host_factory.py`
+  - `python scripts/verify_migration.py --phase 25`
 - Phase 26 interaction session command router gate:
-  - `python scripts/verify_phase26_interaction_session_command_router.py`
+  - `python scripts/verify_migration.py --phase 26`
 - Phase 27 interaction session registration gate:
-  - `python scripts/verify_phase27_interaction_session_registration.py`
+  - `python scripts/verify_migration.py --phase 27`
 - Phase 28 interaction session motor-ownership gate:
-  - `python scripts/verify_phase28_interaction_session_motor_ownership.py`
+  - `python scripts/verify_migration.py --phase 28`
 - Phase 29 interaction session click-event intake gate:
-  - `python scripts/verify_phase29_interaction_session_click_event.py`
+  - `python scripts/verify_migration.py --phase 29`
 - Phase 30 interaction session shutdown gate:
-  - `python scripts/verify_phase30_interaction_session_shutdown.py`
+  - `python scripts/verify_migration.py --phase 30`
 - Phase 31 interaction session shutdown host-factory gate:
-  - `python scripts/verify_phase31_interaction_session_shutdown_host_factory.py`
+  - `python scripts/verify_migration.py --phase 31`
 - Phase 32 interaction session click-event host-factory gate:
-  - `python scripts/verify_phase32_interaction_session_click_event_host_factory.py`
+  - `python scripts/verify_migration.py --phase 32`
 - Phase 33 interaction session ownership service-factory gate:
-  - `python scripts/verify_phase33_interaction_session_ownership_service_factory.py`
+  - `python scripts/verify_migration.py --phase 33`
 - Phase 34 interaction session motor-ownership service-factory gate:
-  - `python scripts/verify_phase34_interaction_session_motor_ownership_service_factory.py`
+  - `python scripts/verify_migration.py --phase 34`
 - Phase 35 interaction session registration service-factory gate:
-  - `python scripts/verify_phase35_interaction_session_registration_service_factory.py`
+  - `python scripts/verify_migration.py --phase 35`
 - Phase 36 interaction session post-click-settle service-factory gate:
-  - `python scripts/verify_phase36_interaction_session_post_click_settle_service_factory.py`
+  - `python scripts/verify_migration.py --phase 36`
 - Phase 37 interaction session click-event service-factory gate:
-  - `python scripts/verify_phase37_interaction_session_click_event_service_factory.py`
+  - `python scripts/verify_migration.py --phase 37`
 - Phase 38 interaction session shutdown service-factory gate:
-  - `python scripts/verify_phase38_interaction_session_shutdown_service_factory.py`
+  - `python scripts/verify_migration.py --phase 38`
 - Phase 39 interaction session command router service-factory gate:
-  - `python scripts/verify_phase39_interaction_session_command_router_service_factory.py`
+  - `python scripts/verify_migration.py --phase 39`
 - Phase 40 interaction session ownership-service host decomposition gate:
-  - `python scripts/verify_phase40_interaction_session_ownership_service_host_decomposition.py`
+  - `python scripts/verify_migration.py --phase 40`
 - Phase 41 interaction session post-click-settle host decomposition gate:
-  - `python scripts/verify_phase41_interaction_session_post_click_settle_host_decomposition.py`
+  - `python scripts/verify_migration.py --phase 41`
 - Phase 42 interaction session registration host decomposition gate:
-  - `python scripts/verify_phase42_interaction_session_registration_host_decomposition.py`
+  - `python scripts/verify_migration.py --phase 42`
 - Phase 43 interaction session motor-ownership host decomposition gate:
-  - `python scripts/verify_phase43_interaction_session_motor_ownership_host_decomposition.py`
+  - `python scripts/verify_migration.py --phase 43`
 - Phase 44 interaction session click-event host decomposition gate:
-  - `python scripts/verify_phase44_interaction_session_click_event_host_decomposition.py`
+  - `python scripts/verify_migration.py --phase 44`
 - Phase 45 interaction session shutdown host decomposition gate:
-  - `python scripts/verify_phase45_interaction_session_shutdown_host_decomposition.py`
+  - `python scripts/verify_migration.py --phase 45`
 - Phase 46 interaction session command-router host decomposition gate:
-  - `python scripts/verify_phase46_interaction_session_command_router_host_decomposition.py`
+  - `python scripts/verify_migration.py --phase 46`
 - Phase 47 interaction session command-router host-factory extraction gate:
-  - `python scripts/verify_phase47_interaction_session_command_router_host_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 47`
 - Phase 48 interaction session shutdown factory extraction gate:
-  - `python scripts/verify_phase48_interaction_session_shutdown_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 48`
 - Phase 49 interaction session registration factory extraction gate:
-  - `python scripts/verify_phase49_interaction_session_registration_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 49`
 - Phase 50 interaction session motor-ownership factory extraction gate:
-  - `python scripts/verify_phase50_interaction_session_motor_ownership_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 50`
 - Phase 51 interaction session click-event factory extraction gate:
-  - `python scripts/verify_phase51_interaction_session_click_event_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 51`
 - Phase 52 interaction session post-click-settle factory extraction gate:
-  - `python scripts/verify_phase52_interaction_session_post_click_settle_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 52`
 - Phase 53 interaction session ownership factory extraction gate:
-  - `python scripts/verify_phase53_interaction_session_ownership_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 53`
 - Phase 54 interaction session host-factory focused-factory consolidation gate:
-  - `python scripts/verify_phase54_interaction_session_host_factory_consolidation.py`
+  - `python scripts/verify_migration.py --phase 54`
 - Phase 55 interaction session macro pass A signoff gate:
-  - `python scripts/verify_phase55_interaction_session_macro_pass_signoff.py`
+  - `python scripts/verify_migration.py --phase 55`
 - Phase 56 interaction session command-router service factory extraction gate:
-  - `python scripts/verify_phase56_interaction_session_command_router_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 56`
 - Phase 57 interaction session click-event host factory extraction gate:
-  - `python scripts/verify_phase57_interaction_session_click_event_host_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 57`
 - Phase 58 interaction session host-factory consolidation B gate:
-  - `python scripts/verify_phase58_interaction_session_host_factory_consolidation_b.py`
+  - `python scripts/verify_migration.py --phase 58`
 - Phase 59 interaction session macro pass B signoff gate:
-  - `python scripts/verify_phase59_interaction_session_macro_pass_b_signoff.py`
+  - `python scripts/verify_migration.py --phase 59`
 - Phase 60 interaction session motor-ownership delegate factory extraction gate:
-  - `python scripts/verify_phase60_interaction_session_motor_ownership_delegate_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 60`
 - Phase 61 interaction session shutdown delegate factory extraction gate:
-  - `python scripts/verify_phase61_interaction_session_shutdown_delegate_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 61`
 - Phase 62 interaction session host-factory consolidation C gate:
-  - `python scripts/verify_phase62_interaction_session_host_factory_consolidation_c.py`
+  - `python scripts/verify_migration.py --phase 62`
 - Phase 63 interaction session macro pass C signoff gate:
-  - `python scripts/verify_phase63_interaction_session_macro_pass_c_signoff.py`
+  - `python scripts/verify_migration.py --phase 63`
 - Phase 64 interaction session registration service-from-host factory extraction gate:
-  - `python scripts/verify_phase64_interaction_session_registration_service_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 64`
 - Phase 65 interaction session ownership service-from-host factory extraction gate:
-  - `python scripts/verify_phase65_interaction_session_ownership_service_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 65`
 - Phase 66 interaction session host-factory consolidation D gate:
-  - `python scripts/verify_phase66_interaction_session_host_factory_consolidation_d.py`
+  - `python scripts/verify_migration.py --phase 66`
 - Phase 67 interaction session macro pass D signoff gate:
-  - `python scripts/verify_phase67_interaction_session_macro_pass_d_signoff.py`
+  - `python scripts/verify_migration.py --phase 67`
 - Phase 68 interaction session click-event delegate-host factory extraction gate:
-  - `python scripts/verify_phase68_interaction_session_click_event_delegate_host_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 68`
 - Phase 69 interaction session shutdown delegate-host factory extraction gate:
-  - `python scripts/verify_phase69_interaction_session_shutdown_delegate_host_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 69`
 - Phase 70 interaction session host-factory consolidation E gate:
-  - `python scripts/verify_phase70_interaction_session_host_factory_consolidation_e.py`
+  - `python scripts/verify_migration.py --phase 70`
 - Phase 71 interaction session macro pass E signoff gate:
-  - `python scripts/verify_phase71_interaction_session_macro_pass_e_signoff.py`
+  - `python scripts/verify_migration.py --phase 71`
 - Phase 72 interaction session click-event service factory extraction gate:
-  - `python scripts/verify_phase72_interaction_session_click_event_service_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 72`
 - Phase 73 interaction session shutdown service factory extraction gate:
-  - `python scripts/verify_phase73_interaction_session_shutdown_service_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 73`
 - Phase 74 interaction session host-factory consolidation F gate:
-  - `python scripts/verify_phase74_interaction_session_host_factory_consolidation_f.py`
+  - `python scripts/verify_migration.py --phase 74`
 - Phase 75 interaction session macro pass F signoff gate:
-  - `python scripts/verify_phase75_interaction_session_macro_pass_f_signoff.py`
+  - `python scripts/verify_migration.py --phase 75`
 - Phase 76 interaction session registration service composite factory extraction gate:
-  - `python scripts/verify_phase76_interaction_session_registration_service_composite_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 76`
 - Phase 77 interaction session motor service composite factory extraction gate:
-  - `python scripts/verify_phase77_interaction_session_motor_service_composite_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 77`
 - Phase 78 interaction session host-factory consolidation G gate:
-  - `python scripts/verify_phase78_interaction_session_host_factory_consolidation_g.py`
+  - `python scripts/verify_migration.py --phase 78`
 - Phase 79 interaction session macro pass G signoff gate:
-  - `python scripts/verify_phase79_interaction_session_macro_pass_g_signoff.py`
+  - `python scripts/verify_migration.py --phase 79`
 - Phase 80 interaction session post-click-settle service composite factory extraction gate:
-  - `python scripts/verify_phase80_interaction_session_post_click_settle_service_composite_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 80`
 - Phase 81 interaction session command-router service composite factory extraction gate:
-  - `python scripts/verify_phase81_interaction_session_command_router_service_composite_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 81`
 - Phase 82 interaction session host-factory consolidation H gate:
-  - `python scripts/verify_phase82_interaction_session_host_factory_consolidation_h.py`
+  - `python scripts/verify_migration.py --phase 82`
 - Phase 83 interaction session macro pass H signoff gate:
-  - `python scripts/verify_phase83_interaction_session_macro_pass_h_signoff.py`
+  - `python scripts/verify_migration.py --phase 83`
 - Phase 84 interaction session ownership service composite factory extraction gate:
-  - `python scripts/verify_phase84_interaction_session_ownership_service_composite_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 84`
 - Phase 85 interaction session host-factory consolidation I gate:
-  - `python scripts/verify_phase85_interaction_session_host_factory_consolidation_i.py`
+  - `python scripts/verify_migration.py --phase 85`
 - Phase 86 interaction session macro pass I signoff gate:
-  - `python scripts/verify_phase86_interaction_session_macro_pass_i_signoff.py`
+  - `python scripts/verify_migration.py --phase 86`
 - Phase 87 interaction session assembly factory extraction gate:
-  - `python scripts/verify_phase87_interaction_session_assembly_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 87`
 - Phase 88 interaction session assembly consolidation J gate:
-  - `python scripts/verify_phase88_interaction_session_assembly_consolidation_j.py`
+  - `python scripts/verify_migration.py --phase 88`
 - Phase 89 interaction session macro pass J signoff gate:
-  - `python scripts/verify_phase89_interaction_session_macro_pass_j_signoff.py`
+  - `python scripts/verify_migration.py --phase 89`
 - Phase 90 interaction session runtime bundle factory extraction gate:
-  - `python scripts/verify_phase90_interaction_session_runtime_bundle_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 90`
 - Phase 91 interaction session assembly consolidation K gate:
-  - `python scripts/verify_phase91_interaction_session_assembly_consolidation_k.py`
+  - `python scripts/verify_migration.py --phase 91`
 - Phase 92 interaction session macro pass K signoff gate:
-  - `python scripts/verify_phase92_interaction_session_macro_pass_k_signoff.py`
+  - `python scripts/verify_migration.py --phase 92`
 - Phase 93 interaction session constructor runtime-bundle extraction gate:
-  - `python scripts/verify_phase93_interaction_session_constructor_runtime_bundle_extraction.py`
+  - `python scripts/verify_migration.py --phase 93`
 - Phase 94 interaction session factory extraction gate:
-  - `python scripts/verify_phase94_interaction_session_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 94`
 - Phase 95 interaction session wiring consolidation L gate:
-  - `python scripts/verify_phase95_interaction_session_wiring_consolidation_l.py`
+  - `python scripts/verify_migration.py --phase 95`
 - Phase 96 interaction session macro pass L signoff gate:
-  - `python scripts/verify_phase96_interaction_session_macro_pass_l_signoff.py`
+  - `python scripts/verify_migration.py --phase 96`
 - Phase 97 interaction session runtime operations extraction gate:
-  - `python scripts/verify_phase97_interaction_session_runtime_operations_extraction.py`
+  - `python scripts/verify_migration.py --phase 97`
 - Phase 98 interaction session runtime operations factory extraction gate:
-  - `python scripts/verify_phase98_interaction_session_runtime_operations_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 98`
 - Phase 99 interaction session wiring consolidation M gate:
-  - `python scripts/verify_phase99_interaction_session_wiring_consolidation_m.py`
+  - `python scripts/verify_migration.py --phase 99`
 - Phase 100 interaction session macro pass M signoff gate:
-  - `python scripts/verify_phase100_interaction_session_macro_pass_m_signoff.py`
+  - `python scripts/verify_migration.py --phase 100`
 - Phase 101 interaction session runtime operations bundle extraction gate:
-  - `python scripts/verify_phase101_interaction_session_runtime_operations_bundle_extraction.py`
+  - `python scripts/verify_migration.py --phase 101`
 - Phase 102 interaction session runtime control bundle extraction gate:
-  - `python scripts/verify_phase102_interaction_session_runtime_control_bundle_extraction.py`
+  - `python scripts/verify_migration.py --phase 102`
 - Phase 103 interaction session runtime bundle factory inputs extraction gate:
-  - `python scripts/verify_phase103_interaction_session_runtime_bundle_factory_inputs_extraction.py`
+  - `python scripts/verify_migration.py --phase 103`
 - Phase 104 interaction session runtime bundle factory typed-entry extraction gate:
-  - `python scripts/verify_phase104_interaction_session_runtime_bundle_factory_typed_entry_extraction.py`
+  - `python scripts/verify_migration.py --phase 104`
 - Phase 105 interaction session assembly wiring consolidation N gate:
-  - `python scripts/verify_phase105_interaction_session_assembly_wiring_consolidation_n.py`
+  - `python scripts/verify_migration.py --phase 105`
 - Phase 106 interaction session macro pass N signoff gate:
-  - `python scripts/verify_phase106_interaction_session_macro_pass_n_signoff.py`
+  - `python scripts/verify_migration.py --phase 106`
 - Phase 107 interaction session assembly factory inputs extraction gate:
-  - `python scripts/verify_phase107_interaction_session_assembly_factory_inputs_extraction.py`
+  - `python scripts/verify_migration.py --phase 107`
 - Phase 108 interaction session assembly factory typed-entry extraction gate:
-  - `python scripts/verify_phase108_interaction_session_assembly_factory_typed_entry_extraction.py`
+  - `python scripts/verify_migration.py --phase 108`
 - Phase 109 interaction session factory wiring consolidation O gate:
-  - `python scripts/verify_phase109_interaction_session_factory_wiring_consolidation_o.py`
+  - `python scripts/verify_migration.py --phase 109`
 - Phase 110 interaction session macro pass O signoff gate:
-  - `python scripts/verify_phase110_interaction_session_macro_pass_o_signoff.py`
+  - `python scripts/verify_migration.py --phase 110`
 - Phase 115 interaction session factory inputs extraction gate:
-  - `python scripts/verify_phase115_interaction_session_factory_inputs_extraction.py`
+  - `python scripts/verify_migration.py --phase 115`
 - Phase 116 interaction session factory typed-entry extraction gate:
-  - `python scripts/verify_phase116_interaction_session_factory_typed_entry_extraction.py`
+  - `python scripts/verify_migration.py --phase 116`
 - Phase 117 interaction session factory wiring consolidation P gate:
-  - `python scripts/verify_phase117_interaction_session_factory_wiring_consolidation_p.py`
+  - `python scripts/verify_migration.py --phase 117`
 - Phase 118 interaction session macro pass P signoff gate:
-  - `python scripts/verify_phase118_interaction_session_macro_pass_p_signoff.py`
+  - `python scripts/verify_migration.py --phase 118`
 - Phase 119 interaction session factory runtime-bundle-factory extraction gate:
-  - `python scripts/verify_phase119_interaction_session_factory_runtime_bundle_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 119`
 - Phase 120 interaction session factory runtime-bundle typed-entry extraction gate:
-  - `python scripts/verify_phase120_interaction_session_factory_runtime_bundle_typed_entry_extraction.py`
+  - `python scripts/verify_migration.py --phase 120`
 - Phase 121 interaction session factory wiring consolidation Q gate:
-  - `python scripts/verify_phase121_interaction_session_factory_wiring_consolidation_q.py`
+  - `python scripts/verify_migration.py --phase 121`
 - Phase 122 interaction session macro pass Q signoff gate:
-  - `python scripts/verify_phase122_interaction_session_macro_pass_q_signoff.py`
+  - `python scripts/verify_migration.py --phase 122`
 - Phase 123 interaction session factory runtime-bundle key-policy extraction gate:
-  - `python scripts/verify_phase123_interaction_session_factory_runtime_bundle_key_policy_extraction.py`
+  - `python scripts/verify_migration.py --phase 123`
 - Phase 124 interaction session factory runtime-bundle default-entry extraction gate:
-  - `python scripts/verify_phase124_interaction_session_factory_runtime_bundle_default_entry_extraction.py`
+  - `python scripts/verify_migration.py --phase 124`
 - Phase 125 interaction session factory wiring consolidation R gate:
-  - `python scripts/verify_phase125_interaction_session_factory_wiring_consolidation_r.py`
+  - `python scripts/verify_migration.py --phase 125`
 - Phase 126 interaction session macro pass R signoff gate:
-  - `python scripts/verify_phase126_interaction_session_macro_pass_r_signoff.py`
+  - `python scripts/verify_migration.py --phase 126`
 - Phase 127 interaction session factory runtime-bundle-factory inputs extraction gate:
-  - `python scripts/verify_phase127_interaction_session_factory_runtime_bundle_factory_inputs_extraction.py`
+  - `python scripts/verify_migration.py --phase 127`
 - Phase 128 interaction session factory runtime-bundle-factory typed-entry extraction gate:
-  - `python scripts/verify_phase128_interaction_session_factory_runtime_bundle_factory_typed_entry_extraction.py`
+  - `python scripts/verify_migration.py --phase 128`
 - Phase 129 interaction session factory wiring consolidation S gate:
-  - `python scripts/verify_phase129_interaction_session_factory_wiring_consolidation_s.py`
+  - `python scripts/verify_migration.py --phase 129`
 - Phase 130 interaction session macro pass S signoff gate:
-  - `python scripts/verify_phase130_interaction_session_macro_pass_s_signoff.py`
+  - `python scripts/verify_migration.py --phase 130`
 - Phase 131 interaction session factory runtime-bundle assembly-inputs-factory extraction gate:
-  - `python scripts/verify_phase131_interaction_session_factory_runtime_bundle_assembly_inputs_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 131`
 - Phase 132 interaction session factory runtime-bundle-factory input typed-entry extraction gate:
-  - `python scripts/verify_phase132_interaction_session_factory_runtime_bundle_factory_input_typed_entry_extraction.py`
+  - `python scripts/verify_migration.py --phase 132`
 - Phase 133 interaction session factory wiring consolidation T gate:
-  - `python scripts/verify_phase133_interaction_session_factory_wiring_consolidation_t.py`
+  - `python scripts/verify_migration.py --phase 133`
 - Phase 134 interaction session macro pass T signoff gate:
-  - `python scripts/verify_phase134_interaction_session_macro_pass_t_signoff.py`
+  - `python scripts/verify_migration.py --phase 134`
 - Phase 135 interaction session factory runtime-bundle-factory-inputs assembly-factory extraction gate:
-  - `python scripts/verify_phase135_interaction_session_factory_runtime_bundle_factory_inputs_assembly_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 135`
 - Phase 136 interaction session factory runtime-bundle assembly-entry typed-routing extraction gate:
-  - `python scripts/verify_phase136_interaction_session_factory_runtime_bundle_assembly_entry_typed_routing_extraction.py`
+  - `python scripts/verify_migration.py --phase 136`
 - Phase 137 interaction session factory wiring consolidation U gate:
-  - `python scripts/verify_phase137_interaction_session_factory_wiring_consolidation_u.py`
+  - `python scripts/verify_migration.py --phase 137`
 - Phase 138 interaction session macro pass U signoff gate:
-  - `python scripts/verify_phase138_interaction_session_macro_pass_u_signoff.py`
+  - `python scripts/verify_migration.py --phase 138`
 - Phase 139 interaction session factory runtime-bundle-factory-inputs factory extraction gate:
-  - `python scripts/verify_phase139_interaction_session_factory_runtime_bundle_factory_inputs_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 139`
 - Phase 140 interaction session factory runtime-bundle-factory input typed-entry routing extraction gate:
-  - `python scripts/verify_phase140_interaction_session_factory_runtime_bundle_factory_input_typed_entry_routing_extraction.py`
+  - `python scripts/verify_migration.py --phase 140`
 - Phase 141 interaction session factory wiring consolidation V gate:
-  - `python scripts/verify_phase141_interaction_session_factory_wiring_consolidation_v.py`
+  - `python scripts/verify_migration.py --phase 141`
 - Phase 142 interaction session macro pass V signoff gate:
-  - `python scripts/verify_phase142_interaction_session_macro_pass_v_signoff.py`
+  - `python scripts/verify_migration.py --phase 142`
 - Phase 143 interaction session factory runtime-bundle default-assembly-inputs-factory extraction gate:
-  - `python scripts/verify_phase143_interaction_session_factory_runtime_bundle_default_assembly_inputs_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 143`
 - Phase 144 interaction session factory runtime-bundle default-entry typed-routing extraction gate:
-  - `python scripts/verify_phase144_interaction_session_factory_runtime_bundle_default_entry_typed_routing_extraction.py`
+  - `python scripts/verify_migration.py --phase 144`
 - Phase 145 interaction session factory wiring consolidation W gate:
-  - `python scripts/verify_phase145_interaction_session_factory_wiring_consolidation_w.py`
+  - `python scripts/verify_migration.py --phase 145`
 - Phase 146 interaction session macro pass W signoff gate:
-  - `python scripts/verify_phase146_interaction_session_macro_pass_w_signoff.py`
+  - `python scripts/verify_migration.py --phase 146`
 - Phase 147 interaction session factory runtime-bundle default-factory-inputs-factory extraction gate:
-  - `python scripts/verify_phase147_interaction_session_factory_runtime_bundle_default_factory_inputs_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 147`
 - Phase 148 interaction session factory runtime-bundle default-factory-input typed-routing extraction gate:
-  - `python scripts/verify_phase148_interaction_session_factory_runtime_bundle_default_factory_input_typed_routing_extraction.py`
+  - `python scripts/verify_migration.py --phase 148`
 - Phase 149 interaction session factory wiring consolidation X gate:
-  - `python scripts/verify_phase149_interaction_session_factory_wiring_consolidation_x.py`
+  - `python scripts/verify_migration.py --phase 149`
 - Phase 150 interaction session macro pass X signoff gate:
-  - `python scripts/verify_phase150_interaction_session_macro_pass_x_signoff.py`
+  - `python scripts/verify_migration.py --phase 150`
 - Phase 151 interaction session factory runtime-bundle default-entry-factory extraction gate:
-  - `python scripts/verify_phase151_interaction_session_factory_runtime_bundle_default_entry_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 151`
 - Phase 152 interaction session factory runtime-bundle default-factory-input typed-entry-routing extraction gate:
-  - `python scripts/verify_phase152_interaction_session_factory_runtime_bundle_default_factory_input_typed_entry_routing_extraction.py`
+  - `python scripts/verify_migration.py --phase 152`
 - Phase 153 interaction session factory wiring consolidation Y gate:
-  - `python scripts/verify_phase153_interaction_session_factory_wiring_consolidation_y.py`
+  - `python scripts/verify_migration.py --phase 153`
 - Phase 154 interaction session macro pass Y signoff gate:
-  - `python scripts/verify_phase154_interaction_session_macro_pass_y_signoff.py`
+  - `python scripts/verify_migration.py --phase 154`
 - Phase 155 interaction session factory runtime-bundle default-factory-input runtime-bundle-factory extraction gate:
-  - `python scripts/verify_phase155_interaction_session_factory_runtime_bundle_default_factory_input_runtime_bundle_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 155`
 - Phase 156 interaction session factory runtime-bundle default-factory-input typed runtime-bundle routing extraction gate:
-  - `python scripts/verify_phase156_interaction_session_factory_runtime_bundle_default_factory_input_typed_runtime_bundle_routing_extraction.py`
+  - `python scripts/verify_migration.py --phase 156`
 - Phase 157 interaction session factory runtime-bundle-factory wiring consolidation Z gate:
-  - `python scripts/verify_phase157_interaction_session_factory_runtime_bundle_factory_wiring_consolidation_z.py`
+  - `python scripts/verify_migration.py --phase 157`
 - Phase 158 interaction session factory default-entry-factory extraction gate:
-  - `python scripts/verify_phase158_interaction_session_factory_default_entry_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 158`
 - Phase 159 interaction session factory default-entry wiring consolidation Z gate:
-  - `python scripts/verify_phase159_interaction_session_factory_default_entry_wiring_consolidation_z.py`
+  - `python scripts/verify_migration.py --phase 159`
 - Phase 160 interaction session macro pass Z signoff gate:
-  - `python scripts/verify_phase160_interaction_session_macro_pass_z_signoff.py`
+  - `python scripts/verify_migration.py --phase 160`
 - Phase 161 interaction session factory default runtime-bundle-factory-inputs-factory extraction gate:
-  - `python scripts/verify_phase161_interaction_session_factory_default_runtime_bundle_factory_inputs_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 161`
 - Phase 162 interaction session factory default runtime-bundle-factory-input typed routing extraction gate:
-  - `python scripts/verify_phase162_interaction_session_factory_default_runtime_bundle_factory_input_typed_routing_extraction.py`
+  - `python scripts/verify_migration.py --phase 162`
 - Phase 163 interaction session factory default-entry-factory wiring consolidation AA gate:
-  - `python scripts/verify_phase163_interaction_session_factory_default_entry_factory_wiring_consolidation_aa.py`
+  - `python scripts/verify_migration.py --phase 163`
 - Phase 164 interaction session factory default-runtime-session-factory extraction gate:
-  - `python scripts/verify_phase164_interaction_session_factory_default_runtime_session_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 164`
 - Phase 165 interaction session factory default-entry wiring consolidation AB gate:
-  - `python scripts/verify_phase165_interaction_session_factory_default_entry_wiring_consolidation_ab.py`
+  - `python scripts/verify_migration.py --phase 165`
 - Phase 166 interaction session macro pass AB signoff gate:
-  - `python scripts/verify_phase166_interaction_session_macro_pass_ab_signoff.py`
+  - `python scripts/verify_migration.py --phase 166`
 - Phase 167 interaction session factory default-runtime-bundle-factory extraction gate:
-  - `python scripts/verify_phase167_interaction_session_factory_default_runtime_bundle_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 167`
 - Phase 168 interaction session factory default-runtime-bundle typed routing extraction gate:
-  - `python scripts/verify_phase168_interaction_session_factory_default_runtime_bundle_typed_routing_extraction.py`
+  - `python scripts/verify_migration.py --phase 168`
 - Phase 169 interaction session factory default-runtime-session wiring consolidation AC gate:
-  - `python scripts/verify_phase169_interaction_session_factory_default_runtime_session_wiring_consolidation_ac.py`
+  - `python scripts/verify_migration.py --phase 169`
 - Phase 170 interaction session factory default-entry-runtime-session-factory extraction gate:
-  - `python scripts/verify_phase170_interaction_session_factory_default_entry_runtime_session_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 170`
 - Phase 171 interaction session factory default-entry wiring consolidation AC gate:
-  - `python scripts/verify_phase171_interaction_session_factory_default_entry_wiring_consolidation_ac.py`
+  - `python scripts/verify_migration.py --phase 171`
 - Phase 172 interaction session macro pass AC signoff gate:
-  - `python scripts/verify_phase172_interaction_session_macro_pass_ac_signoff.py`
+  - `python scripts/verify_migration.py --phase 172`
 - Phase 173 interaction session factory default-entry-runtime-bundle-factory-inputs-factory extraction gate:
-  - `python scripts/verify_phase173_interaction_session_factory_default_entry_runtime_bundle_factory_inputs_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 173`
 - Phase 174 interaction session factory default-entry-runtime-bundle-factory-input typed routing extraction gate:
-  - `python scripts/verify_phase174_interaction_session_factory_default_entry_runtime_bundle_factory_input_typed_routing_extraction.py`
+  - `python scripts/verify_migration.py --phase 174`
 - Phase 175 interaction session factory default-entry wiring consolidation AD gate:
-  - `python scripts/verify_phase175_interaction_session_factory_default_entry_wiring_consolidation_ad.py`
+  - `python scripts/verify_migration.py --phase 175`
 - Phase 176 interaction session factory default-factory-inputs-session-factory extraction gate:
-  - `python scripts/verify_phase176_interaction_session_factory_default_factory_inputs_session_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 176`
 - Phase 177 interaction session factory wiring consolidation AC gate:
-  - `python scripts/verify_phase177_interaction_session_factory_wiring_consolidation_ac.py`
+  - `python scripts/verify_migration.py --phase 177`
 - Phase 178 interaction session macro pass AD signoff gate:
-  - `python scripts/verify_phase178_interaction_session_macro_pass_ad_signoff.py`
+  - `python scripts/verify_migration.py --phase 178`
 - Phase 179 interaction session factory assembly-factory-inputs-session-factory extraction gate:
-  - `python scripts/verify_phase179_interaction_session_factory_assembly_factory_inputs_session_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 179`
 - Phase 180 interaction session factory assembly-factory-input typed routing extraction gate:
-  - `python scripts/verify_phase180_interaction_session_factory_assembly_factory_input_typed_routing_extraction.py`
+  - `python scripts/verify_migration.py --phase 180`
 - Phase 181 interaction session factory runtime-bundle-factory-inputs-session-factory extraction gate:
-  - `python scripts/verify_phase181_interaction_session_factory_runtime_bundle_factory_inputs_session_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 181`
 - Phase 182 interaction session factory runtime-bundle-factory-input typed routing extraction gate:
-  - `python scripts/verify_phase182_interaction_session_factory_runtime_bundle_factory_input_typed_routing_extraction.py`
+  - `python scripts/verify_migration.py --phase 182`
 - Phase 183 interaction session factory runtime-bundle-session-factory extraction gate:
-  - `python scripts/verify_phase183_interaction_session_factory_runtime_bundle_session_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 183`
 - Phase 184 interaction session macro pass AE signoff gate:
-  - `python scripts/verify_phase184_interaction_session_macro_pass_ae_signoff.py`
+  - `python scripts/verify_migration.py --phase 184`
 - Phase 185 interaction session factory default-runtime-bundle-factory-inputs-session-factory extraction gate:
-  - `python scripts/verify_phase185_interaction_session_factory_default_runtime_bundle_factory_inputs_session_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 185`
 - Phase 186 interaction session factory default-runtime-bundle-factory-input typed routing extraction gate:
-  - `python scripts/verify_phase186_interaction_session_factory_default_runtime_bundle_factory_input_typed_routing_extraction.py`
+  - `python scripts/verify_migration.py --phase 186`
 - Phase 187 interaction session factory service-inputs-session-factory extraction gate:
-  - `python scripts/verify_phase187_interaction_session_factory_service_inputs_session_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 187`
 - Phase 188 interaction session factory service-input typed routing extraction gate:
-  - `python scripts/verify_phase188_interaction_session_factory_service_input_typed_routing_extraction.py`
+  - `python scripts/verify_migration.py --phase 188`
 - Phase 189 interaction session factory entry-session-factory extraction gate:
-  - `python scripts/verify_phase189_interaction_session_factory_entry_session_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 189`
 - Phase 190 interaction session macro pass AF signoff gate:
-  - `python scripts/verify_phase190_interaction_session_macro_pass_af_signoff.py`
+  - `python scripts/verify_migration.py --phase 190`
 - Phase 191 interaction session factory factory-inputs-session-factory extraction gate:
-  - `python scripts/verify_phase191_interaction_session_factory_factory_inputs_session_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 191`
 - Phase 192 interaction session factory factory-input typed routing extraction gate:
-  - `python scripts/verify_phase192_interaction_session_factory_factory_input_typed_routing_extraction.py`
+  - `python scripts/verify_migration.py --phase 192`
 - Phase 193 interaction session factory assembly-runtime-session-factory extraction gate:
-  - `python scripts/verify_phase193_interaction_session_factory_assembly_runtime_session_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 193`
 - Phase 194 interaction session factory assembly-runtime typed routing extraction gate:
-  - `python scripts/verify_phase194_interaction_session_factory_assembly_runtime_typed_routing_extraction.py`
+  - `python scripts/verify_migration.py --phase 194`
 - Phase 195 interaction session factory runtime-entry-session-factory extraction gate:
-  - `python scripts/verify_phase195_interaction_session_factory_runtime_entry_session_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 195`
 - Phase 196 interaction session macro pass AG signoff gate:
-  - `python scripts/verify_phase196_interaction_session_macro_pass_ag_signoff.py`
+  - `python scripts/verify_migration.py --phase 196`
 - Phase 197 interaction session factory entry-service-inputs-session-factory extraction gate:
-  - `python scripts/verify_phase197_interaction_session_factory_entry_service_inputs_session_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 197`
 - Phase 198 interaction session factory entry service-input typed routing extraction gate:
-  - `python scripts/verify_phase198_interaction_session_factory_entry_service_input_typed_routing_extraction.py`
+  - `python scripts/verify_migration.py --phase 198`
 - Phase 199 interaction session factory entry-default-runtime-bundle-factory-inputs-session-factory extraction gate:
-  - `python scripts/verify_phase199_interaction_session_factory_entry_default_runtime_bundle_factory_inputs_session_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 199`
 - Phase 200 interaction session factory entry default-runtime-bundle-factory-input typed routing extraction gate:
-  - `python scripts/verify_phase200_interaction_session_factory_entry_default_runtime_bundle_factory_input_typed_routing_extraction.py`
+  - `python scripts/verify_migration.py --phase 200`
 - Phase 201 interaction session factory factory-inputs-default-session-factory extraction gate:
-  - `python scripts/verify_phase201_interaction_session_factory_factory_inputs_default_session_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 201`
 - Phase 202 interaction session macro pass AH signoff gate:
-  - `python scripts/verify_phase202_interaction_session_macro_pass_ah_signoff.py`
+  - `python scripts/verify_migration.py --phase 202`
 - Phase 203 interaction session factory assembly-runtime-assembly-session-factory extraction gate:
-  - `python scripts/verify_phase203_interaction_session_factory_assembly_runtime_assembly_session_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 203`
 - Phase 204 interaction session factory assembly-runtime assembly typed routing extraction gate:
-  - `python scripts/verify_phase204_interaction_session_factory_assembly_runtime_assembly_typed_routing_extraction.py`
+  - `python scripts/verify_migration.py --phase 204`
 - Phase 205 interaction session factory assembly-runtime-bundle-factory-inputs-session-factory extraction gate:
-  - `python scripts/verify_phase205_interaction_session_factory_assembly_runtime_bundle_factory_inputs_session_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 205`
 - Phase 206 interaction session factory assembly-runtime bundle-factory-input typed routing extraction gate:
-  - `python scripts/verify_phase206_interaction_session_factory_assembly_runtime_bundle_factory_input_typed_routing_extraction.py`
+  - `python scripts/verify_migration.py --phase 206`
 - Phase 207 interaction session factory runtime-entry-runtime-session-factory extraction gate:
-  - `python scripts/verify_phase207_interaction_session_factory_runtime_entry_runtime_session_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 207`
 - Phase 208 interaction session macro pass AI signoff gate:
-  - `python scripts/verify_phase208_interaction_session_macro_pass_ai_signoff.py`
+  - `python scripts/verify_migration.py --phase 208`
 - Phase 209 interaction session factory assembly-runtime-entry-assembly-session-factory extraction gate:
-  - `python scripts/verify_phase209_interaction_session_factory_assembly_runtime_entry_assembly_session_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 209`
 - Phase 210 interaction session factory assembly-runtime entry assembly typed routing extraction gate:
-  - `python scripts/verify_phase210_interaction_session_factory_assembly_runtime_entry_assembly_typed_routing_extraction.py`
+  - `python scripts/verify_migration.py --phase 210`
 - Phase 211 interaction session factory assembly-runtime-entry-bundle-factory-inputs-session-factory extraction gate:
-  - `python scripts/verify_phase211_interaction_session_factory_assembly_runtime_entry_bundle_factory_inputs_session_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 211`
 - Phase 212 interaction session factory assembly-runtime entry bundle-factory-input typed routing extraction gate:
-  - `python scripts/verify_phase212_interaction_session_factory_assembly_runtime_entry_bundle_factory_input_typed_routing_extraction.py`
+  - `python scripts/verify_migration.py --phase 212`
 - Phase 213 interaction session factory entry-runtime-session-factory extraction gate:
-  - `python scripts/verify_phase213_interaction_session_factory_entry_runtime_session_factory_extraction.py`
+  - `python scripts/verify_migration.py --phase 213`
 - Phase 214 interaction session macro pass AJ signoff gate:
-  - `python scripts/verify_phase214_interaction_session_macro_pass_aj_signoff.py`
+  - `python scripts/verify_migration.py --phase 214`
