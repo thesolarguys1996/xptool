@@ -15,7 +15,6 @@ RUNTIME_DIR = PROJECT_ROOT / "runtime" / "native-cutover"
 REPORT_PATH = RUNTIME_DIR / "phase7-cutover-report.json"
 BRIDGE_TELEMETRY_PATH = RUNTIME_DIR / "bridge-telemetry-phase7.ndjson"
 UI_OVERLAY_PATH = RUNTIME_DIR / "native-ui-overlay-phase7.txt"
-BRIDGE_FIXTURE_INGEST_PATH = RUNTIME_DIR / "bridge-command-envelope-phase7.ndjson"
 
 
 @dataclass
@@ -103,59 +102,6 @@ def _append_check(results: list[dict[str, object]], name: str, passed: bool, det
     )
 
 
-def _seed_bridge_ingest_fixture(path: Path) -> None:
-    now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    fixture_lines = [
-        json.dumps(
-            {
-                "schemaVersion": "1.0",
-                "commandId": "phase7-accepted-001",
-                "commandType": "WOODCUT_CHOP_NEAREST_TREE_SAFE",
-                "issuedAtUtc": now_utc,
-                "payload": {"plannerTag": "phase7"},
-            }
-        ),
-        json.dumps(
-            {
-                "schemaVersion": "1.0",
-                "commandId": "phase7-invalid-schema-001",
-                "commandType": "WOODCUT_CHOP_NEAREST_TREE_SAFE",
-                "issuedAtUtc": now_utc,
-                "payload": "invalid-payload-shape",
-            }
-        ),
-        json.dumps(
-            {
-                "schemaVersion": "1.0",
-                "commandId": "phase7-unsupported-001",
-                "commandType": "UNSUPPORTED_COMMAND",
-                "issuedAtUtc": now_utc,
-                "payload": {"plannerTag": "phase7"},
-            }
-        ),
-        json.dumps(
-            {
-                "schemaVersion": "1.0",
-                "commandId": "phase7-accepted-001",
-                "commandType": "WOODCUT_CHOP_NEAREST_TREE_SAFE",
-                "issuedAtUtc": now_utc,
-                "payload": {"plannerTag": "phase7"},
-            }
-        ),
-        json.dumps(
-            {
-                "schemaVersion": "1.0",
-                "commandId": "phase7-stale-001",
-                "commandType": "WOODCUT_CHOP_NEAREST_TREE_SAFE",
-                "issuedAtUtc": "2001-01-01T00:00:00Z",
-                "payload": {"plannerTag": "phase7"},
-            }
-        ),
-    ]
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text("\n".join(fixture_lines) + "\n", encoding="utf-8")
-
-
 def main() -> int:
     RUNTIME_DIR.mkdir(parents=True, exist_ok=True)
     checks: list[dict[str, object]] = []
@@ -192,7 +138,6 @@ def main() -> int:
         _append_check(checks, "required_files_present", True, "all required files found")
 
     try:
-        _seed_bridge_ingest_fixture(BRIDGE_FIXTURE_INGEST_PATH)
         bridge_result = _run_command(
             "bridge_phase7_ingest",
             [
@@ -202,7 +147,7 @@ def main() -> int:
                 "--port",
                 "7611",
                 "--command-ingest-path",
-                str(BRIDGE_FIXTURE_INGEST_PATH),
+                str(PROJECT_ROOT / "runtime/bridge/command-envelope.ndjson"),
                 "--telemetry-out-path",
                 str(BRIDGE_TELEMETRY_PATH),
                 "--enable-verifier",
