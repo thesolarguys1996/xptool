@@ -3,12 +3,12 @@
 Last updated: 2026-04-07
 
 ## Snapshot
-- Latest started phase: `214`
-- Latest completed phase: `214`
+- Latest started phase: `220`
+- Latest completed phase: `220`
 - Migration status: `ACTIVE` (native-first progression with compatibility shims still present)
 
 ## Current Target
-- Prepare next bundle after Phase 214 signoff using consolidated verifier workflow (`verify_migration.py`).
+- Continue bundled migration passes using registry-backed verifier bundles (starting after `215-220`).
 - Keep native cutover + soak gates green on every push.
 
 ## Status Source

@@ -1,0 +1,68 @@
+{
+  "bundles": {
+    "215-220": {
+      "label": "Bigger Pass A",
+      "phases": [215, 216, 217, 218, 219, 220]
+    }
+  },
+  "phases": {
+    "215": {
+      "title": "Migration Verifier Registry Lock",
+      "checks": [
+        "phase_registry_exists",
+        "docs_hierarchy"
+      ],
+      "evidenceDocs": [
+        "docs/migration/overview.md",
+        "docs/migration/current-phase.md",
+        "docs/migration/checklists.md",
+        "docs/migration/phase-registry.json"
+      ]
+    },
+    "216": {
+      "title": "Archive Integrity and Coverage Guard",
+      "checks": [
+        "phase_registry_exists",
+        "archive_integrity",
+        "legacy_phase_verifier_archive"
+      ],
+      "evidenceDocs": [
+        "docs/migration/archive/README.md",
+        "scripts/migration/archive/phase_verifiers/verify_phase119_interaction_session_factory_runtime_bundle_factory_extraction.py"
+      ]
+    },
+    "217": {
+      "title": "Legacy Verifier Archive Ownership",
+      "checks": [
+        "legacy_phase_verifier_archive"
+      ]
+    },
+    "218": {
+      "title": "Task Command Consolidation",
+      "checks": [
+        "tasks_phase_command_consolidation"
+      ],
+      "evidenceDocs": [
+        "TASKS.md"
+      ]
+    },
+    "219": {
+      "title": "Runtime Bundle Factory Guard Continuity",
+      "checks": [
+        "runtime_bundle_factory"
+      ]
+    },
+    "220": {
+      "title": "Bundle A Signoff",
+      "checks": [
+        "current_phase_snapshot",
+        "phase_registry_exists",
+        "tasks_phase_command_consolidation"
+      ],
+      "evidenceDocs": [
+        "docs/migration/current-phase.md",
+        "docs/NATIVE_CLIENT_PHASE_STATUS.md"
+      ]
+    }
+  }
+}

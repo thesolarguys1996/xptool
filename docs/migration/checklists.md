@@ -11,6 +11,7 @@ Last updated: 2026-04-07
 
 ## Verification Checklist
 - [ ] Run `python scripts/verify_migration.py --phase <N>` for the phase being advanced.
+- [ ] Run bundled pass verification with `python scripts/verify_migration.py --bundle <start-end> --require-complete`.
 - [ ] Run targeted checks with `python scripts/verify_migration.py --check <name>`.
 - [ ] Run native cutover guard: `python scripts/verify_native_cutover.py`.
 - [ ] Run native soak guard:

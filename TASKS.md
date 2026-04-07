@@ -1109,3 +1109,12 @@ Phase status board: `docs/NATIVE_CLIENT_PHASE_STATUS.md`
   - `python scripts/verify_migration.py --phase 213`
 - Phase 214 interaction session macro pass AJ signoff gate:
   - `python scripts/verify_migration.py --phase 214`
+
+## Migration Bundle Passes
+
+- [x] Define Phase 215 migration verifier registry lock scope and completion gates.
+- [x] Define Phase 216 archive integrity guard scope and completion gates.
+- [x] Define Phase 217 legacy phase-verifier archive ownership scope and completion gates.
+- [x] Define Phase 218 tasks command consolidation scope and completion gates.
+- [x] Define Phase 219 runtime-bundle factory guard continuity scope and completion gates.
+- [x] Run bundled verification/signoff for Phases 215-220 using `python scripts/verify_migration.py --bundle 215-220 --require-complete` and record `PHASE 220 COMPLETE`.
