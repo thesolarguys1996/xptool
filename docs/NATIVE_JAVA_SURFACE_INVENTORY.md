@@ -1,10 +1,10 @@
 # Native Java Surface Inventory (Phase 10.2 Baseline)
 
-Last updated: 2026-04-06
+Last updated: 2026-04-07
 
 ## Snapshot
 - Scope: `runelite-plugin/src/main/java`
-- Total Java files remaining: `329`
+- Total Java files remaining: `378`
 - Removed already: `XPToolPlugin.java`, `XPToolConfig.java`
 
 ## Package Inventory (Port vs Delete)
@@ -25,7 +25,7 @@ Last updated: 2026-04-06
 ## Delete-First Scaffolding Set
 - Classification rule: Java integration scaffold classes that should be deleted (not 1:1 ported) once native host integration is complete.
 - Baseline matched by filename patterns: `*HostAdapter*`, `*Wiring*`, `*Bundle*`, `*Inputs*`
-- Count: `19` files
+- Count: `53` files
 - Phase 11.2 batch 1 removed account-runtime host-adapter scaffolds:
   - `LoginScreenStateResolverHostAdapter.java`
   - `LoginRuntimeHostAdapter.java`
@@ -804,7 +804,7 @@ Last updated: 2026-04-06
   - `InteractionSessionFactoryEntryRuntimeSessionFactoryTest.java` (covers focused entry runtime session factory entrypoint continuity)
 ## Port-First Behavior Set
 - Remaining files after delete-first scaffolding set:
-- Count: `310` files
+- Count: `325` files
 - These represent behavior/policy/runtime logic that must exist in native-owned components before Java removal.
 
 ## Phase 10.2 Decision

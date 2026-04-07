@@ -12,6 +12,7 @@ DEFAULT_OUTPUT = PROJECT_ROOT / "build" / "thin-client"
 
 THIN_MODULES = (
     "__init__.py",
+    "activities/registry.py",
     "bridge.py",
     "command_bus_contract.py",
     "command_policy.py",
@@ -28,6 +29,12 @@ THIN_MODULES = (
 THIN_RESOURCE_DIRS = (
     "schemas",
 )
+
+THIN_SYNTHETIC_MODULES = {
+    "activities/__init__.py": (
+        "# Thin-client activities package stub.\n"
+    ),
+}
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
@@ -59,6 +66,10 @@ def _copy_thin_modules(output_root: Path) -> None:
             raise FileNotFoundError(f"missing_thin_source_resource_dir:{src_dir}")
         dst_dir = package_root / rel_dir
         shutil.copytree(src_dir, dst_dir, dirs_exist_ok=True)
+    for rel_name, module_text in THIN_SYNTHETIC_MODULES.items():
+        dst = package_root / rel_name
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        dst.write_text(module_text, encoding="utf-8")
 
 
 def _write_pyproject(output_root: Path) -> None:
