@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "xptool://schemas/snapshot_dto",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "capturedAtUnixMs",
+    "tick",
+    "gameState",
+    "mouseCanvasX",
+    "mouseCanvasY",
+    "canvasWidth",
+    "canvasHeight",
+    "inventory",
+    "equipment",
+    "worldState"
+  ],
+  "properties": {
+    "capturedAtUnixMs": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "tick": {
+      "type": "integer"
+    },
+    "gameState": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "mouseCanvasX": {
+      "type": "integer"
+    },
+    "mouseCanvasY": {
+      "type": "integer"
+    },
+    "canvasWidth": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "canvasHeight": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "inventory": {
+      "type": "object"
+    },
+    "equipment": {
+      "type": "object"
+    },
+    "worldState": {
+      "type": "object"
+    }
+  }
+}

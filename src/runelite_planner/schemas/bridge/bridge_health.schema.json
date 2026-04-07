@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "xptool://schemas/bridge_health",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "bridgeInstanceId",
+    "status",
+    "nowUnixMs",
+    "lastGameTick",
+    "lastClientTick",
+    "mappingVersion",
+    "pendingCommandQueueDepth",
+    "runtimeGatewayAttached"
+  ],
+  "properties": {
+    "bridgeInstanceId": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 128
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "starting",
+        "healthy",
+        "degraded",
+        "stopping",
+        "stopped"
+      ]
+    },
+    "nowUnixMs": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "lastGameTick": {
+      "type": "integer",
+      "minimum": -2147483648
+    },
+    "lastClientTick": {
+      "type": "integer",
+      "minimum": -2147483648
+    },
+    "mappingVersion": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "pendingCommandQueueDepth": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "runtimeGatewayAttached": {
+      "type": "boolean"
+    }
+  }
+}

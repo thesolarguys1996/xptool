@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "xptool://schemas/interaction_command",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "interactionId",
+    "type",
+    "issuedAtUnixMs",
+    "args"
+  ],
+  "properties": {
+    "interactionId": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 128
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "MOUSE_MOVE",
+        "MOUSE_CLICK",
+        "KEY_CHORD",
+        "MENU_CLICK",
+        "WIDGET_CLICK"
+      ]
+    },
+    "issuedAtUnixMs": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "args": {
+      "type": "object"
+    }
+  }
+}

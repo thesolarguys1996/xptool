@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "xptool://schemas/auth_hello",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "bridgeInstanceId",
+    "controllerId",
+    "method",
+    "issuedAtUnixMs",
+    "nonce",
+    "protocolVersion"
+  ],
+  "properties": {
+    "bridgeInstanceId": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 128
+    },
+    "controllerId": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 128
+    },
+    "method": {
+      "type": "string",
+      "enum": [
+        "MTLS",
+        "LOCAL_KEY"
+      ]
+    },
+    "issuedAtUnixMs": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "nonce": {
+      "type": "string",
+      "minLength": 16,
+      "maxLength": 256
+    },
+    "protocolVersion": {
+      "type": "string",
+      "pattern": "^xptool-bridge\\/\\d+$"
+    }
+  }
+}

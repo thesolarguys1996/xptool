@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "xptool://schemas/interaction_result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "interactionId",
+    "status",
+    "reason",
+    "details"
+  ],
+  "properties": {
+    "interactionId": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 128
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "dispatched",
+        "rejected",
+        "failed"
+      ]
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "details": {
+      "type": "object"
+    }
+  }
+}

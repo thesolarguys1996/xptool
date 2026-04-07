@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "xptool://schemas/auth_session",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "sessionId",
+    "peerId",
+    "issuedAtUnixMs",
+    "expiresAtUnixMs",
+    "keyId"
+  ],
+  "properties": {
+    "sessionId": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 128
+    },
+    "peerId": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 128
+    },
+    "issuedAtUnixMs": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "expiresAtUnixMs": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "keyId": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 128
+    }
+  }
+}

@@ -1,0 +1,84 @@
+name: Tasks Priority Gate
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+
+jobs:
+  verify-tasks-priority:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Verify TASKS Current Priority
+        run: python scripts/verify_tasks_priority.py
+
+      - name: Verify Agent Policy Canonicalization
+        run: python scripts/verify_agent_policy.py
+
+      - name: Verify Java Runtime Ownership Blocked By Default
+        run: python scripts/verify_java_runtime_ownership_blocked.py
+
+      - name: Verify Java Shim Retirement Gates
+        run: python scripts/verify_java_shim_retirement_gates.py
+
+      - name: Verify Native-Only Operations Hardening
+        run: python scripts/verify_native_only_operations_hardening.py
+
+  verify-native-soak-signoff:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Configure Native Bridge
+        run: cmake -S native-bridge -B build/native-bridge
+
+      - name: Build Native Bridge
+        run: cmake --build build/native-bridge --config Release
+
+      - name: Configure Native Core
+        run: cmake -S native-core -B build/native-core
+
+      - name: Build Native Core
+        run: cmake --build build/native-core --config Release
+
+      - name: Configure Native UI
+        run: cmake -S native-ui -B build/native-ui
+
+      - name: Build Native UI
+        run: cmake --build build/native-ui --config Release
+
+      - name: Bootstrap Native Runtime Paths
+        shell: pwsh
+        run: ./scripts/bootstrap-runtime.ps1
+
+      - name: Run Native Soak
+        run: python scripts/run_native_soak.py --iterations 3 --pause-ms 0
+
+      - name: Verify Native Soak Report
+        run: python scripts/verify_native_soak_report.py --min-iterations 3 --max-failures 0 --max-age-hours 2
+
+      - name: Upload Native Soak Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-soak-artifacts
+          path: |
+            runtime/native-cutover/phase7-cutover-report.json
+            runtime/native-soak/soak-report.json
+            runtime/native-soak/iterations
+            runtime/native-cutover/bridge-telemetry-phase7.ndjson
+            runtime/native-cutover/native-ui-overlay-phase7.txt

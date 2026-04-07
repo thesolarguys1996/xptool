@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "xptool://schemas/signed_command_envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "commandId",
+    "sessionId",
+    "issuedAtUnixMs",
+    "nonce",
+    "commandType",
+    "payload",
+    "signatureBase64"
+  ],
+  "properties": {
+    "commandId": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 128
+    },
+    "sessionId": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 128
+    },
+    "issuedAtUnixMs": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "nonce": {
+      "type": "string",
+      "minLength": 16,
+      "maxLength": 256
+    },
+    "commandType": {
+      "type": "string",
+      "pattern": "^[A-Z0-9_]+$"
+    },
+    "payload": {
+      "type": "object"
+    },
+    "signatureBase64": {
+      "type": "string",
+      "minLength": 16
+    }
+  }
+}

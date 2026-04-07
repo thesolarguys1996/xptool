@@ -1,0 +1,4 @@
+[console_scripts]
+xptool = runelite_planner.main:main
+xptool-gui = runelite_planner.gui:main
+

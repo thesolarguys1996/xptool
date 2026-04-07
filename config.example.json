@@ -1,0 +1,8 @@
+{
+  "logPath": "runtime\\client.log",
+  "commandOut": "runelite-plugin\\tools\\command-bus.ndjson",
+  "strategy": {
+    "name": "OpenBankProbeStrategy",
+    "cooldownTicks": 4
+  }
+}

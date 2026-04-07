@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "xptool://schemas/auth_proof",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "controllerId",
+    "sessionChallenge",
+    "issuedAtUnixMs",
+    "nonce",
+    "signatureBase64"
+  ],
+  "properties": {
+    "controllerId": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 128
+    },
+    "sessionChallenge": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 512
+    },
+    "issuedAtUnixMs": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "nonce": {
+      "type": "string",
+      "minLength": 16,
+      "maxLength": 256
+    },
+    "signatureBase64": {
+      "type": "string",
+      "minLength": 16
+    }
+  }
+}

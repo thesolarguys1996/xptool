@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Planner runtime artifacts
+runtime/
+command-bus.ndjson
+tmp-*.ndjson
+tmp_*.ndjson
+tmp_tail_*.ndjson
+tmp-*.log
+tmp-*.java
+
+# Plugin build artifacts
+runelite-plugin/.gradle/
+runelite-plugin/build/
+
+# Plugin tool runtime artifacts
+runelite-plugin/tools/*.ndjson
+runelite-plugin/tools/__pycache__/
+
+# Local workspace/editor artifacts
+.codex/
+.gradle-local/
+build/
+.vscode/

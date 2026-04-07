@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "xptool://schemas/command_ack",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "commandId",
+    "status",
+    "reason",
+    "details",
+    "ackUnixMs"
+  ],
+  "properties": {
+    "commandId": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 128
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "accepted",
+        "rejected",
+        "failed",
+        "executed"
+      ]
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "details": {
+      "type": "object"
+    },
+    "ackUnixMs": {
+      "type": "integer",
+      "minimum": 0
+    }
+  }
+}

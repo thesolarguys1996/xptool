@@ -1,0 +1,21 @@
+# activity,tick,dispatched,reason_code,target_id
+mining,200,1,mining_dispatch_target_selected,3001
+mining,201,0,cooldown_active,3002
+mining,202,1,mining_dispatch_repeat_reroute,3002
+mining,203,0,cooldown_active,3002
+mining,204,0,no_intent_repeat_blocked_no_alternate,-1
+fishing,300,1,fishing_dispatch_target_selected,4001
+fishing,301,0,cooldown_active,4002
+fishing,302,1,fishing_dispatch_repeat_reroute,4002
+fishing,303,0,cooldown_active,4002
+fishing,304,0,no_intent_repeat_blocked_no_alternate,-1
+combat,400,1,combat_dispatch_target_selected,5001
+combat,401,0,cooldown_active,5002
+combat,402,1,combat_dispatch_repeat_reroute,5002
+combat,403,0,cooldown_active,5002
+combat,404,0,no_intent_repeat_blocked_no_alternate,-1
+banking,500,1,banking_dispatch_target_selected,6001
+banking,501,0,cooldown_active,6002
+banking,502,1,banking_dispatch_repeat_reroute,6002
+banking,503,0,no_intent_bank_already_open,-1
+banking,504,0,no_intent_repeat_blocked_no_alternate,-1

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "xptool/schemas/native/telemetry-event.v1.json",
+  "title": "TelemetryEventV1",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "eventId",
+    "eventType",
+    "eventTimeUtc",
+    "source",
+    "data"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "eventId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "eventType": {
+      "type": "string",
+      "minLength": 1
+    },
+    "eventTimeUtc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "native-core",
+        "native-bridge",
+        "native-ui",
+        "java-shim"
+      ]
+    },
+    "reasonCode": {
+      "type": "string"
+    },
+    "data": {
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,1111 @@
+# XPTool Tracking Checklist
+
+Last updated: 2026-04-05
+
+## Current Priority
+
+- [ ] Make full test suite green (`python -m unittest discover -s tests`).
+- [ ] Keep strict remote policy lock enforced in `xptool` entrypoint.
+- [ ] Keep thin-client export as the only release artifact.
+
+## Work Board
+
+- [x] Enforce strict remote planner runtime policy (no local fallback, startup precheck, HTTPS, decisionId).
+- [x] Remove non-strict remote CLI switches from user-facing surface.
+- [x] Run remote-only strategy stub in main runtime path.
+- [x] Add thin-client export script and manifest.
+- [x] Add thin-export tests.
+- [x] Update remote planner and rollout docs to strict mode.
+- [ ] Fix existing unrelated failing tests in fishing and break scheduler suites.
+- [x] Add CI gate to block releases unless thin export is generated and validated.
+- [ ] Add release signing/checksum publish step for thin-client artifacts.
+- [ ] Execute staged rollout drill and attach KPI snapshots.
+
+## Native Migration Checklist
+
+- [x] Finalize native migration architecture doc (`docs/NATIVE_CLIENT_MIGRATION_PLAN.md`) and assign module owners.
+- [x] Freeze and version command/telemetry schemas for mixed Java/native operation.
+- [x] Implement native bridge daemon with local-only bind and token auth enforcement.
+- [x] Build native runtime core with single motor authority and explicit gate/reason-code telemetry.
+- [x] Implement woodcutting vertical slice in native runtime and run parity harness validation.
+- [x] Harden native state acquisition with schema compatibility, deferred recovery, and terminal rejection gates.
+- [x] Migrate mining/fishing/combat/banking one activity at a time with parity gates.
+- [x] Replace Java overlay ownership with native UI/overlay path.
+- [x] Cut over to native-default runtime and freeze Java shim ownership (decommission after soak signoff).
+- [x] Remove Java shadow runtime path entirely (no legacy override) with CI reintroduction guard.
+- [x] Define Phase 9 Java shim retirement checklist and cutover gates (`XPToolPlugin`/`XPToolConfig`).
+- [x] Remove `XPToolConfig` runtime dependency from `CommandExecutor` (use `xptool.leftClickDropItemIds` system property).
+- [x] Remove `XPToolConfig` and `provideConfig(...)` shim wiring.
+- [x] Remove `XPToolPlugin` and RuneLite plugin registration shim references.
+- [x] Run full Phase 9 gate pack and mark `PHASE 9 COMPLETE`.
+- [x] Define Phase 10 native-only operations hardening scope and execution slices.
+- [x] Audit docs/scripts for native-only operational consistency and patch stale ownership assumptions.
+- [x] Tighten native-only verification/soak gates for inventory drift and host-cutover invariants.
+- [x] Add reliability/incident triage runbook updates and artifact capture guidance.
+- [x] Complete Phase 10 signoff pack and mark `PHASE 10 COMPLETE`.
+- [x] Define Phase 11 native-host cutover scope and execution slices.
+- [x] Publish Phase 11 wave map using `docs/NATIVE_JAVA_SURFACE_INVENTORY.md` as baseline (`delete-first` then `port-first`).
+- [x] Execute Phase 11.2 batch 1 (account-runtime host-adapter scaffolding migration/removal).
+- [x] Execute Phase 11.2 batch 2 (account-runtime coordinator host-adapter scaffolding migration/removal).
+- [x] Execute Phase 11.2 batch 3 (runtime-orchestration host-adapter scaffolding migration/removal).
+- [x] Execute Phase 11.2 batch 4 (runtime-service host-adapter scaffolding migration/removal).
+- [x] Execute Phase 11.2 batch 5 (login/menu interaction host-adapter scaffolding migration/removal).
+- [x] Execute Phase 11.2 batch 6 (idle/runtime host-adapter scaffolding migration/removal).
+- [x] Execute Phase 11.2 batch 7 (resolver/policy host-adapter scaffolding migration/removal).
+- [x] Execute Phase 11.2 batch 8 (engine host-adapter scaffolding migration/removal).
+- [x] Execute Phase 11.2 batch 9 (interaction-controller host-adapter scaffolding migration/removal).
+- [x] Execute Phase 11.2 batch 10 (scene/runtime host-adapter scaffolding migration/removal).
+- [x] Execute Phase 11.2 batch 11 (gameplay action host-adapter scaffolding migration/removal).
+- [x] Execute Phase 11.2 batch 12 (shop/world-hop host-adapter scaffolding migration/removal).
+- [x] Execute Phase 11.2 batch 13 (typing/npc-context host-adapter scaffolding migration/removal).
+- [x] Execute Phase 11.2 batch 14 (skilling resolver host-adapter scaffolding migration/removal).
+- [x] Execute Phase 11.2 batch 15 (combat navigation host-adapter scaffolding migration/removal).
+- [x] Execute Phase 11.2 batch 16 (interaction command host-adapter scaffolding migration/removal).
+- [x] Execute Phase 11.2 batch 17 (mining command host-adapter scaffolding migration/removal).
+- [x] Execute Phase 11.2 batch 18 (fishing command host-adapter scaffolding migration/removal).
+- [x] Execute Phase 11.2 batch 19 (woodcutting command host-adapter scaffolding migration/removal).
+- [x] Execute Phase 11.2 batch 20 (drop runtime host-adapter scaffolding migration/removal).
+- [x] Execute Phase 11.2 batch 21 (combat command host-adapter scaffolding migration/removal).
+- [x] Execute Phase 11.2 batch 22 (bank command host-adapter scaffolding migration/removal).
+- [x] Execute Phase 11.3 batch 1 (bridge/executor dispatch-settings boundary contract migration).
+- [x] Execute Phase 11.3 batch 2 (bridge-owned dispatch-settings runtime-state consolidation).
+- [x] Execute Phase 11.3 batch 3 (remove executor dispatch-settings wrapper; route ingest/dispatch policy checks to bridge runtime-state contract).
+- [x] Execute Phase 11.3 batch 4 (introduce executor live-dispatch policy seam for command ingest/dispatch boundary).
+- [x] Execute Phase 11.3 batch 5 (extract bridge command dispatch-mode decisions from `CommandExecutor` into executor policy component).
+- [x] Execute Phase 11.3 batch 6 (route command live/shadow path selection and `shadow_would_dispatch` classification through dispatch-mode policy).
+- [x] Execute Phase 11.3 batch 7 (extract shared command ingest/dispatch precheck pipeline into policy component).
+- [x] Execute Phase 11.3 batch 8 (extract command-decision to execution-outcome mapping into executor policy component).
+- [x] Execute Phase 11.3 batch 9 (extract shadow-dispatch outcome assembly and unsupported-command outcome handling into executor policy component).
+- [x] Execute Phase 11.3 batch 10 (extract shared live/shadow row-evaluation precheck and exception guard flow into executor policy component).
+- [x] Execute Phase 11.3 batch 11 (extract live/shadow command-row routing branch ownership into executor policy component).
+- [x] Execute Phase 11.3 batch 12 (extract live command-evaluation precheck/dispatch outcome ownership into executor policy component).
+- [x] Execute Phase 11.3 batch 13 (extract shadow command-evaluation precheck/support-check/outcome ownership into executor policy component).
+- [x] Execute Phase 11 delete-first scaffolding migration wave and remove migrated Java scaffolds.
+- [x] Execute Phase 11.4 batch 1 (extract command-row evaluation behavior ownership into dedicated runtime service).
+- [x] Execute Phase 11.4 batch 2 (extract queued-command idle arming/suppression behavior + planner-tag parsing into focused components).
+- [x] Execute Phase 11.4 batch 3 (extract parsed-command queue ingest behavior and row mapping into focused runtime service).
+- [x] Execute Phase 11.4 batch 4 (extract command-ingest callback behavior into focused runtime service).
+- [x] Execute Phase 11 port-first behavior migration wave with parity gates.
+- [x] Run full Phase 11 signoff pack and mark `PHASE 11 COMPLETE`.
+- [x] Define Phase 12 native-default cutover scope and completion evidence gates.
+- [x] Validate native-default bootstrap/launcher enforcement and operational runbook alignment.
+- [x] Run full Phase 12 signoff gate pack and mark `PHASE 12 COMPLETE`.
+- [x] Define Phase 13 executor compatibility-decomposition scope and completion evidence gates.
+- [x] Extract command-ingest id/path policy and manual-metrics gate telemetry ownership from `CommandExecutor` into focused runtime services.
+- [x] Run Phase 13 verification + guard pack and mark `PHASE 13 COMPLETE`.
+- [x] Define Phase 14 executor utility-decomposition scope and completion evidence gates.
+- [x] Extract utility helper ownership (`details`/`asInt`) and remove dead helper paths from `CommandExecutor`.
+- [x] Run Phase 14 verification + guard pack and mark `PHASE 14 COMPLETE`.
+- [x] Define Phase 15 drop-runtime decomposition scope and completion evidence gates.
+- [x] Extract drop-sweep session state and drop-target inventory policy ownership from `CommandExecutor`.
+- [x] Run Phase 15 verification + guard pack and mark `PHASE 15 COMPLETE`.
+- [x] Define Phase 16 motor pending-telemetry decomposition scope and completion evidence gates.
+- [x] Extract pending-move telemetry ownership from `CommandExecutor` into focused runtime service.
+- [x] Run Phase 16 verification + guard pack and mark `PHASE 16 COMPLETE`.
+- [x] Define Phase 17 motor terminal decomposition scope and completion evidence gates.
+- [x] Extract motor terminal lifecycle ownership from `CommandExecutor` into focused runtime service.
+- [x] Run Phase 17 verification + guard pack and mark `PHASE 17 COMPLETE`.
+- [x] Define Phase 18 motor dispatch admission decomposition scope and completion evidence gates.
+- [x] Extract motor dispatch admission/cooldown ownership from `CommandExecutor` into focused runtime service.
+- [x] Run Phase 18 verification + guard pack and mark `PHASE 18 COMPLETE`.
+- [x] Define Phase 19 motor dispatch context decomposition scope and completion evidence gates.
+- [x] Extract motor owner/click-type context ownership from `CommandExecutor` into focused runtime service.
+- [x] Run Phase 19 verification + guard pack and mark `PHASE 19 COMPLETE`.
+- [x] Define Phase 20 interaction click telemetry decomposition scope and completion evidence gates.
+- [x] Extract interaction-click telemetry/state ownership from `CommandExecutor` into focused runtime service.
+- [x] Run Phase 20 verification + guard pack and mark `PHASE 20 COMPLETE`.
+- [x] Define Phase 21 interaction anchor resolution decomposition scope and completion evidence gates.
+- [x] Extract interaction anchor resolution ownership from `CommandExecutor` into focused runtime service.
+- [x] Run Phase 21 verification + guard pack and mark `PHASE 21 COMPLETE`.
+- [x] Define Phase 22 interaction click event packaging decomposition scope and completion evidence gates.
+- [x] Extract interaction click event packaging ownership from `CommandExecutor` into focused runtime/event contract services.
+- [x] Run Phase 22 verification + guard pack and mark `PHASE 22 COMPLETE`.
+- [x] Define Phase 23 interaction post-click settle decomposition scope and completion evidence gates.
+- [x] Extract interaction post-click settle scheduling/state ownership from `InteractionSession` into focused runtime service.
+- [x] Run Phase 23 verification + guard pack and mark `PHASE 23 COMPLETE`.
+- [x] Define Phase 24 interaction session ownership decomposition scope and completion evidence gates.
+- [x] Extract interaction session registration/motor-ownership orchestration from `InteractionSession` into focused runtime service.
+- [x] Run Phase 24 verification + guard pack and mark `PHASE 24 COMPLETE`.
+- [x] Define Phase 25 interaction session host-factory decomposition scope and completion evidence gates.
+- [x] Extract `InteractionSession` host wiring assembly into focused host-factory boundary.
+- [x] Run Phase 25 verification + guard pack and mark `PHASE 25 COMPLETE`.
+- [x] Define Phase 26 interaction session command router decomposition scope and completion evidence gates.
+- [x] Extract interaction-session command support/dispatch ownership from `InteractionSession` into focused router service.
+- [x] Run Phase 26 verification + guard pack and mark `PHASE 26 COMPLETE`.
+- [x] Define Phase 27 interaction session registration decomposition scope and completion evidence gates.
+- [x] Extract interaction-session registration lifecycle ownership from `InteractionSession` into focused registration service.
+- [x] Run Phase 27 verification + guard pack and mark `PHASE 27 COMPLETE`.
+- [x] Define Phase 28 interaction session motor-ownership adapter decomposition scope and completion evidence gates.
+- [x] Extract remaining interaction-session motor-ownership adapter ownership into focused service.
+- [x] Run Phase 28 verification + guard pack and mark `PHASE 28 COMPLETE`.
+- [x] Define Phase 29 interaction session click-event intake decomposition scope and completion evidence gates.
+- [x] Extract interaction-session click-event intake ownership from `InteractionSession` into focused service.
+- [x] Run Phase 29 verification + guard pack and mark `PHASE 29 COMPLETE`.
+- [x] Define Phase 30 interaction session shutdown decomposition scope and completion evidence gates.
+- [x] Extract interaction-session shutdown lifecycle ownership from `InteractionSession` into focused service.
+- [x] Run Phase 30 verification + guard pack and mark `PHASE 30 COMPLETE`.
+- [x] Define Phase 31 interaction session shutdown host-factory decomposition scope and completion evidence gates.
+- [x] Extract interaction-session shutdown host wiring from `InteractionSession` constructor into focused host-factory method.
+- [x] Run Phase 31 verification + guard pack and mark `PHASE 31 COMPLETE`.
+- [x] Define Phase 32 interaction session click-event host-factory decomposition scope and completion evidence gates.
+- [x] Extract interaction-session click-event host wiring from `InteractionSession` constructor into focused host-factory method.
+- [x] Run Phase 32 verification + guard pack and mark `PHASE 32 COMPLETE`.
+- [x] Define Phase 33 interaction session ownership service-factory decomposition scope and completion evidence gates.
+- [x] Extract interaction-session ownership-service construction from `InteractionSession` into focused host-factory method.
+- [x] Run Phase 33 verification + guard pack and mark `PHASE 33 COMPLETE`.
+- [x] Define Phase 34 interaction session motor-ownership service-factory decomposition scope and completion evidence gates.
+- [x] Extract interaction-session motor-ownership service construction from `InteractionSession` into focused host-factory method.
+- [x] Run Phase 34 verification + guard pack and mark `PHASE 34 COMPLETE`.
+- [x] Define Phase 35 interaction session registration service-factory decomposition scope and completion evidence gates.
+- [x] Extract interaction-session registration-service construction from `InteractionSession` into focused host-factory method.
+- [x] Run Phase 35 verification + guard pack and mark `PHASE 35 COMPLETE`.
+- [x] Define Phase 36 interaction session post-click-settle service-factory decomposition scope and completion evidence gates.
+- [x] Extract interaction-session post-click-settle service construction from `InteractionSession` into focused host-factory method.
+- [x] Run Phase 36 verification + guard pack and mark `PHASE 36 COMPLETE`.
+- [x] Define Phase 37 interaction session click-event service-factory decomposition scope and completion evidence gates.
+- [x] Extract interaction-session click-event service construction from `InteractionSession` into focused host-factory method.
+- [x] Run Phase 37 verification + guard pack and mark `PHASE 37 COMPLETE`.
+- [x] Define Phase 38 interaction session shutdown service-factory decomposition scope and completion evidence gates.
+- [x] Extract interaction-session shutdown service construction from `InteractionSession` into focused host-factory method.
+- [x] Run Phase 38 verification + guard pack and mark `PHASE 38 COMPLETE`.
+- [x] Define Phase 39 interaction session command router service-factory decomposition scope and completion evidence gates.
+- [x] Extract interaction-session command router service construction from `InteractionSession` into focused host-factory method.
+- [x] Run Phase 39 verification + guard pack and mark `PHASE 39 COMPLETE`.
+- [x] Define Phase 40 interaction session ownership-service host decomposition scope and completion evidence gates.
+- [x] Extract interaction-session ownership service host-based construction boundary in `InteractionSessionHostFactory`.
+- [x] Run Phase 40 verification + guard pack and mark `PHASE 40 COMPLETE`.
+- [x] Define Phase 41 interaction session post-click-settle host decomposition scope and completion evidence gates.
+- [x] Extract interaction-session post-click-settle service host-based construction boundary in `InteractionSessionHostFactory`.
+- [x] Run Phase 41 verification + guard pack and mark `PHASE 41 COMPLETE`.
+- [x] Define Phase 42 interaction session registration host decomposition scope and completion evidence gates.
+- [x] Extract interaction-session registration service host-based construction boundary in `InteractionSessionHostFactory`.
+- [x] Run Phase 42 verification + guard pack and mark `PHASE 42 COMPLETE`.
+- [x] Define Phase 43 interaction session motor-ownership host decomposition scope and completion evidence gates.
+- [x] Extract interaction-session motor-ownership service host-based construction boundary in `InteractionSessionHostFactory`.
+- [x] Run Phase 43 verification + guard pack and mark `PHASE 43 COMPLETE`.
+- [x] Define Phase 44 interaction session click-event host decomposition scope and completion evidence gates.
+- [x] Extract interaction-session click-event service host-based construction boundary in `InteractionSessionHostFactory`.
+- [x] Run Phase 44 verification + guard pack and mark `PHASE 44 COMPLETE`.
+- [x] Define Phase 45 interaction session shutdown host decomposition scope and completion evidence gates.
+- [x] Extract interaction-session shutdown service host-based construction boundary in `InteractionSessionHostFactory`.
+- [x] Run Phase 45 verification + guard pack and mark `PHASE 45 COMPLETE`.
+- [x] Define Phase 46 interaction session command-router host decomposition scope and completion evidence gates.
+- [x] Extract interaction-session command-router host delegate construction boundary in `InteractionSessionHostFactory`.
+- [x] Run Phase 46 verification + guard pack and mark `PHASE 46 COMPLETE`.
+- [x] Define Phase 47 interaction session command-router host-factory extraction scope and completion evidence gates.
+- [x] Extract interaction-session command-router host delegate assembly into focused `InteractionSessionCommandRouterHostFactory`.
+- [x] Run Phase 47 verification + guard pack and mark `PHASE 47 COMPLETE`.
+- [x] Define Phase 48 interaction session shutdown factory extraction scope and completion evidence gates.
+- [x] Extract interaction-session shutdown service/host assembly into focused `InteractionSessionShutdownFactory`.
+- [x] Run Phase 48 verification + guard pack and mark `PHASE 48 COMPLETE`.
+- [x] Define Phase 49 interaction session registration factory extraction scope and completion evidence gates.
+- [x] Extract interaction-session registration host assembly into focused `InteractionSessionRegistrationFactory`.
+- [x] Run Phase 49 verification + guard pack and mark `PHASE 49 COMPLETE`.
+- [x] Define Phase 50 interaction session motor-ownership factory extraction scope and completion evidence gates.
+- [x] Extract interaction-session motor-ownership host assembly into focused `InteractionSessionMotorOwnershipFactory`.
+- [x] Run Phase 50 verification + guard pack and mark `PHASE 50 COMPLETE`.
+- [x] Define Phase 51 interaction session click-event factory extraction scope and completion evidence gates.
+- [x] Extract interaction-session click-event service assembly into focused `InteractionSessionClickEventFactory`.
+- [x] Run Phase 51 verification + guard pack and mark `PHASE 51 COMPLETE`.
+- [x] Define Phase 52 interaction session post-click-settle factory extraction scope and completion evidence gates.
+- [x] Extract interaction-session post-click-settle service/host assembly into focused `InteractionPostClickSettleFactory`.
+- [x] Run Phase 52 verification + guard pack and mark `PHASE 52 COMPLETE`.
+- [x] Define Phase 53 interaction session ownership factory extraction scope and completion evidence gates.
+- [x] Extract interaction-session ownership host assembly into focused `InteractionSessionOwnershipFactory`.
+- [x] Run Phase 53 verification + guard pack and mark `PHASE 53 COMPLETE`.
+- [x] Define Phase 54 interaction session host-factory focused-factory consolidation scope and completion evidence gates.
+- [x] Consolidate `InteractionSessionHostFactory` delegation boundaries across focused factory components while preserving compatibility signatures.
+- [x] Run Phase 54 verification + guard pack and mark `PHASE 54 COMPLETE`.
+- [x] Define Phase 55 interaction-session macro pass signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 52-55.
+- [x] Run Phase 55 verification + guard pack and mark `PHASE 55 COMPLETE`.
+- [x] Define Phase 56 interaction session command-router service factory extraction scope and completion evidence gates.
+- [x] Extract interaction-session command-router service-from-host assembly into focused `InteractionSessionCommandRouterFactory`.
+- [x] Run Phase 56 verification + guard pack and mark `PHASE 56 COMPLETE`.
+- [x] Define Phase 57 interaction session click-event host factory extraction scope and completion evidence gates.
+- [x] Extract interaction-session click-event host assembly into focused `InteractionSessionClickEventFactory`.
+- [x] Run Phase 57 verification + guard pack and mark `PHASE 57 COMPLETE`.
+- [x] Define Phase 58 interaction session host-factory consolidation B scope and completion evidence gates.
+- [x] Consolidate host-factory delegation seams for command-router service and click-event host focused factories while preserving legacy compatibility wrappers.
+- [x] Run Phase 58 verification + guard pack and mark `PHASE 58 COMPLETE`.
+- [x] Define Phase 59 interaction-session macro pass B signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 56-59.
+- [x] Run Phase 59 verification + guard pack and mark `PHASE 59 COMPLETE`.
+- [x] Define Phase 60 interaction session motor-ownership delegate-factory extraction scope and completion evidence gates.
+- [x] Extract interaction-session motor-ownership delegate-host assembly into focused `InteractionSessionMotorOwnershipFactory` ownership.
+- [x] Run Phase 60 verification + guard pack and mark `PHASE 60 COMPLETE`.
+- [x] Define Phase 61 interaction session shutdown delegate-factory extraction scope and completion evidence gates.
+- [x] Extract interaction-session shutdown delegate-host assembly into focused `InteractionSessionShutdownFactory` ownership.
+- [x] Run Phase 61 verification + guard pack and mark `PHASE 61 COMPLETE`.
+- [x] Define Phase 62 interaction session host-factory consolidation C scope and completion evidence gates.
+- [x] Consolidate focused-factory delegate seams for motor-ownership and shutdown factories while preserving legacy host-factory compatibility wrappers.
+- [x] Run Phase 62 verification + guard pack and mark `PHASE 62 COMPLETE`.
+- [x] Define Phase 63 interaction-session macro pass C signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 60-63.
+- [x] Run Phase 63 verification + guard pack and mark `PHASE 63 COMPLETE`.
+- [x] Define Phase 64 interaction session registration service-from-host factory extraction scope and completion evidence gates.
+- [x] Extract interaction-session registration service-from-host assembly into focused `InteractionSessionRegistrationFactory` ownership.
+- [x] Run Phase 64 verification + guard pack and mark `PHASE 64 COMPLETE`.
+- [x] Define Phase 65 interaction session ownership service-from-host factory extraction scope and completion evidence gates.
+- [x] Extract interaction-session ownership service-from-host assembly into focused `InteractionSessionOwnershipFactory` ownership.
+- [x] Run Phase 65 verification + guard pack and mark `PHASE 65 COMPLETE`.
+- [x] Define Phase 66 interaction session host-factory consolidation D scope and completion evidence gates.
+- [x] Consolidate host-factory service-from-host delegation seams for registration, motor-ownership, and ownership focused factories while preserving compatibility sentinel strings.
+- [x] Run Phase 66 verification + guard pack and mark `PHASE 66 COMPLETE`.
+- [x] Define Phase 67 interaction-session macro pass D signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 64-67.
+- [x] Run Phase 67 verification + guard pack and mark `PHASE 67 COMPLETE`.
+- [x] Define Phase 68 interaction session click-event delegate-host factory extraction scope and completion evidence gates.
+- [x] Extract interaction-session click-event delegate-host assembly into focused `InteractionSessionClickEventFactory` ownership.
+- [x] Run Phase 68 verification + guard pack and mark `PHASE 68 COMPLETE`.
+- [x] Define Phase 69 interaction session shutdown delegate-host factory extraction scope and completion evidence gates.
+- [x] Extract interaction-session shutdown delegate-host assembly into focused `InteractionSessionShutdownFactory` ownership.
+- [x] Run Phase 69 verification + guard pack and mark `PHASE 69 COMPLETE`.
+- [x] Define Phase 70 interaction session host-factory consolidation E scope and completion evidence gates.
+- [x] Consolidate host-factory delegate-host delegation seams for click-event and shutdown focused factories while preserving compatibility sentinel strings.
+- [x] Run Phase 70 verification + guard pack and mark `PHASE 70 COMPLETE`.
+- [x] Define Phase 71 interaction-session macro pass E signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 68-71.
+- [x] Run Phase 71 verification + guard pack and mark `PHASE 71 COMPLETE`.
+- [x] Define Phase 72 interaction session click-event service factory extraction scope and completion evidence gates.
+- [x] Extract interaction-session click-event service assembly into focused `InteractionSessionClickEventFactory` ownership.
+- [x] Run Phase 72 verification + guard pack and mark `PHASE 72 COMPLETE`.
+- [x] Define Phase 73 interaction session shutdown service factory extraction scope and completion evidence gates.
+- [x] Extract interaction-session shutdown service assembly into focused `InteractionSessionShutdownFactory` ownership.
+- [x] Run Phase 73 verification + guard pack and mark `PHASE 73 COMPLETE`.
+- [x] Define Phase 74 interaction session host-factory consolidation F scope and completion evidence gates.
+- [x] Consolidate host-factory service delegation seams for click-event and shutdown focused factories while preserving compatibility sentinel strings.
+- [x] Run Phase 74 verification + guard pack and mark `PHASE 74 COMPLETE`.
+- [x] Define Phase 75 interaction-session macro pass F signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 72-75.
+- [x] Run Phase 75 verification + guard pack and mark `PHASE 75 COMPLETE`.
+- [x] Define Phase 76 interaction session registration service composite factory extraction scope and completion evidence gates.
+- [x] Extract interaction-session registration composite service assembly into focused `InteractionSessionRegistrationFactory` ownership.
+- [x] Run Phase 76 verification + guard pack and mark `PHASE 76 COMPLETE`.
+- [x] Define Phase 77 interaction session motor service composite factory extraction scope and completion evidence gates.
+- [x] Extract interaction-session motor composite service assembly into focused `InteractionSessionMotorOwnershipFactory` ownership.
+- [x] Run Phase 77 verification + guard pack and mark `PHASE 77 COMPLETE`.
+- [x] Define Phase 78 interaction session host-factory consolidation G scope and completion evidence gates.
+- [x] Consolidate host-factory composite service delegation seams for registration and motor focused factories while preserving compatibility sentinel strings.
+- [x] Run Phase 78 verification + guard pack and mark `PHASE 78 COMPLETE`.
+- [x] Define Phase 79 interaction-session macro pass G signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 76-79.
+- [x] Run Phase 79 verification + guard pack and mark `PHASE 79 COMPLETE`.
+- [x] Define Phase 80 interaction session post-click settle service composite factory extraction scope and completion evidence gates.
+- [x] Extract interaction-session post-click settle composite service assembly into focused `InteractionPostClickSettleFactory` ownership.
+- [x] Run Phase 80 verification + guard pack and mark `PHASE 80 COMPLETE`.
+- [x] Define Phase 81 interaction session command-router service composite factory extraction scope and completion evidence gates.
+- [x] Extract interaction-session command-router composite service assembly into focused `InteractionSessionCommandRouterFactory` ownership.
+- [x] Run Phase 81 verification + guard pack and mark `PHASE 81 COMPLETE`.
+- [x] Define Phase 82 interaction session host-factory consolidation H scope and completion evidence gates.
+- [x] Consolidate host-factory composite service delegation seams for post-click-settle and command-router focused factories while preserving compatibility sentinel strings.
+- [x] Run Phase 82 verification + guard pack and mark `PHASE 82 COMPLETE`.
+- [x] Define Phase 83 interaction-session macro pass H signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 80-83.
+- [x] Run Phase 83 verification + guard pack and mark `PHASE 83 COMPLETE`.
+- [x] Define Phase 84 interaction session ownership service composite factory extraction scope and completion evidence gates.
+- [x] Extract interaction-session ownership composite service assembly into focused `InteractionSessionOwnershipFactory` ownership.
+- [x] Run Phase 84 verification + guard pack and mark `PHASE 84 COMPLETE`.
+- [x] Define Phase 85 interaction session host-factory consolidation I scope and completion evidence gates.
+- [x] Consolidate host-factory ownership composite service delegation seam while preserving compatibility sentinel strings.
+- [x] Run Phase 85 verification + guard pack and mark `PHASE 85 COMPLETE`.
+- [x] Define Phase 86 interaction-session macro pass I signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 84-86.
+- [x] Run Phase 86 verification + guard pack and mark `PHASE 86 COMPLETE`.
+- [x] Define Phase 87 interaction session assembly factory extraction scope and completion evidence gates.
+- [x] Extract interaction-session constructor assembly into focused `InteractionSessionAssemblyFactory` ownership.
+- [x] Run Phase 87 verification + guard pack and mark `PHASE 87 COMPLETE`.
+- [x] Define Phase 88 interaction session assembly consolidation J scope and completion evidence gates.
+- [x] Consolidate interaction-session assembly factory session-key runtime bundle seam while preserving compatibility sentinel strings.
+- [x] Run Phase 88 verification + guard pack and mark `PHASE 88 COMPLETE`.
+- [x] Define Phase 89 interaction-session macro pass J signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 87-89.
+- [x] Run Phase 89 verification + guard pack and mark `PHASE 89 COMPLETE`.
+- [x] Define Phase 90 interaction session runtime bundle factory extraction scope and completion evidence gates.
+- [x] Extract interaction-session runtime bundle construction into focused `InteractionSessionRuntimeBundleFactory` ownership.
+- [x] Run Phase 90 verification + guard pack and mark `PHASE 90 COMPLETE`.
+- [x] Define Phase 91 interaction session assembly consolidation K scope and completion evidence gates.
+- [x] Consolidate interaction-session assembly runtime bundle delegation seam while preserving compatibility sentinel strings.
+- [x] Run Phase 91 verification + guard pack and mark `PHASE 91 COMPLETE`.
+- [x] Define Phase 92 interaction-session macro pass K signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 90-92.
+- [x] Run Phase 92 verification + guard pack and mark `PHASE 92 COMPLETE`.
+- [x] Define Phase 93 interaction session constructor runtime-bundle extraction scope and completion evidence gates.
+- [x] Extract interaction-session constructor runtime-bundle injection seam and remove unused constructor-owned runtime-service fields.
+- [x] Run Phase 93 verification + guard pack and mark `PHASE 93 COMPLETE`.
+- [x] Define Phase 94 interaction session factory extraction scope and completion evidence gates.
+- [x] Extract interaction-session construction into focused `InteractionSessionFactory` ownership.
+- [x] Run Phase 94 verification + guard pack and mark `PHASE 94 COMPLETE`.
+- [x] Define Phase 95 interaction session wiring consolidation L scope and completion evidence gates.
+- [x] Consolidate executor/session wiring interaction-session seam through focused `InteractionSessionFactory` ownership.
+- [x] Run Phase 95 verification + guard pack and mark `PHASE 95 COMPLETE`.
+- [x] Define Phase 96 interaction-session macro pass L signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 93-96.
+- [x] Run Phase 96 verification + guard pack and mark `PHASE 96 COMPLETE`.
+- [x] Define Phase 97 interaction-session runtime-operations extraction scope and completion evidence gates.
+- [x] Extract interaction-session command/click/tick/shutdown delegation into focused `InteractionSessionRuntimeOperations` ownership.
+- [x] Run Phase 97 verification + guard pack and mark `PHASE 97 COMPLETE`.
+- [x] Define Phase 98 interaction-session runtime-operations factory extraction scope and completion evidence gates.
+- [x] Extract interaction-session runtime-operations construction into focused `InteractionSessionRuntimeOperationsFactory` ownership.
+- [x] Run Phase 98 verification + guard pack and mark `PHASE 98 COMPLETE`.
+- [x] Define Phase 99 interaction-session wiring consolidation M scope and completion evidence gates.
+- [x] Consolidate interaction-session runtime-bundle wiring seam through focused `InteractionSessionRuntimeOperationsFactory` ownership.
+- [x] Run Phase 99 verification + guard pack and mark `PHASE 99 COMPLETE`.
+- [x] Define Phase 100 interaction-session macro pass M signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 97-100.
+- [x] Run Phase 100 verification + guard pack and mark `PHASE 100 COMPLETE`.
+- [x] Define Phase 101 interaction-session runtime-operations bundle extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionRuntimeOperationsBundle` ownership and route runtime-operations factory delegation through that seam.
+- [x] Run Phase 101 verification + guard pack and mark `PHASE 101 COMPLETE`.
+- [x] Define Phase 102 interaction-session runtime-control bundle extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionRuntimeControlBundle` ownership and route runtime-bundle composition through runtime-ops + runtime-control bundle seams.
+- [x] Run Phase 102 verification + guard pack and mark `PHASE 102 COMPLETE`.
+- [x] Define Phase 103 interaction-session runtime-bundle-factory inputs extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionRuntimeBundleFactoryInputs` ownership for runtime-bundle-factory typed inputs.
+- [x] Run Phase 103 verification + guard pack and mark `PHASE 103 COMPLETE`.
+- [x] Define Phase 104 interaction-session runtime-bundle-factory typed-entry extraction scope and completion evidence gates.
+- [x] Extract typed-entry runtime-bundle creation seam in `InteractionSessionRuntimeBundleFactory` ownership.
+- [x] Run Phase 104 verification + guard pack and mark `PHASE 104 COMPLETE`.
+- [x] Define Phase 105 interaction-session assembly wiring consolidation N scope and completion evidence gates.
+- [x] Consolidate `InteractionSessionAssemblyFactory` runtime-bundle seam through typed `InteractionSessionRuntimeBundleFactoryInputs` ownership.
+- [x] Run Phase 105 verification + guard pack and mark `PHASE 105 COMPLETE`.
+- [x] Define Phase 106 interaction-session macro pass N signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 103-106.
+- [x] Run Phase 106 verification + guard pack and mark `PHASE 106 COMPLETE`.
+- [x] Define Phase 107 interaction-session assembly-factory inputs extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionAssemblyFactoryInputs` ownership for assembly-factory typed inputs.
+- [x] Run Phase 107 verification + guard pack and mark `PHASE 107 COMPLETE`.
+- [x] Define Phase 108 interaction-session assembly-factory typed-entry extraction scope and completion evidence gates.
+- [x] Extract typed-entry runtime-bundle assembly seams in `InteractionSessionAssemblyFactory` ownership.
+- [x] Run Phase 108 verification + guard pack and mark `PHASE 108 COMPLETE`.
+- [x] Define Phase 109 interaction-session factory wiring consolidation O scope and completion evidence gates.
+- [x] Consolidate `InteractionSessionFactory` runtime-bundle seam through typed `InteractionSessionAssemblyFactoryInputs` ownership.
+- [x] Run Phase 109 verification + guard pack and mark `PHASE 109 COMPLETE`.
+- [x] Define Phase 110 interaction-session macro pass O signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 107-110.
+- [x] Run Phase 110 verification + guard pack and mark `PHASE 110 COMPLETE`.
+- [x] Define Phase 115 interaction-session factory inputs extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryInputs` ownership for interaction-session factory typed inputs.
+- [x] Run Phase 115 verification + guard pack and mark `PHASE 115 COMPLETE`.
+- [x] Define Phase 116 interaction-session factory typed-entry extraction scope and completion evidence gates.
+- [x] Extract typed-entry interaction-session construction seam in `InteractionSessionFactory` ownership.
+- [x] Run Phase 116 verification + guard pack and mark `PHASE 116 COMPLETE`.
+- [x] Define Phase 117 interaction-session factory wiring consolidation P scope and completion evidence gates.
+- [x] Consolidate public `InteractionSessionFactory.create(...)` seam through typed `InteractionSessionFactoryInputs` ownership.
+- [x] Run Phase 117 verification + guard pack and mark `PHASE 117 COMPLETE`.
+- [x] Define Phase 118 interaction-session macro pass P signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 115-118.
+- [x] Run Phase 118 verification + guard pack and mark `PHASE 118 COMPLETE`.
+- [x] Define Phase 119 interaction-session factory runtime-bundle-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryRuntimeBundleFactory` ownership for interaction-session factory runtime-bundle routing seams.
+- [x] Run Phase 119 verification + guard pack and mark `PHASE 119 COMPLETE`.
+- [x] Define Phase 120 interaction-session factory runtime-bundle typed-entry extraction scope and completion evidence gates.
+- [x] Extract typed-entry runtime-bundle creation seam in `InteractionSessionFactory` through `InteractionSessionFactoryRuntimeBundleFactory` ownership.
+- [x] Run Phase 120 verification + guard pack and mark `PHASE 120 COMPLETE`.
+- [x] Define Phase 121 interaction-session factory wiring consolidation Q scope and completion evidence gates.
+- [x] Consolidate public `InteractionSessionFactory.create(...)` seam through typed `InteractionSessionFactoryRuntimeBundleFactory` ownership.
+- [x] Run Phase 121 verification + guard pack and mark `PHASE 121 COMPLETE`.
+- [x] Define Phase 122 interaction-session macro pass Q signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 119-122.
+- [x] Run Phase 122 verification + guard pack and mark `PHASE 122 COMPLETE`.
+- [x] Define Phase 123 interaction-session factory runtime-bundle key-policy extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryRuntimeBundleKeyPolicy` ownership for interaction-session factory default runtime-bundle session-key policy.
+- [x] Run Phase 123 verification + guard pack and mark `PHASE 123 COMPLETE`.
+- [x] Define Phase 124 interaction-session factory runtime-bundle default-entry extraction scope and completion evidence gates.
+- [x] Extract typed default runtime-bundle entry seam in `InteractionSessionFactory` through `InteractionSessionFactoryRuntimeBundleFactory` ownership.
+- [x] Run Phase 124 verification + guard pack and mark `PHASE 124 COMPLETE`.
+- [x] Define Phase 125 interaction-session factory wiring consolidation R scope and completion evidence gates.
+- [x] Consolidate public `InteractionSessionFactory.create(...)` seam through typed default runtime-bundle entry ownership.
+- [x] Run Phase 125 verification + guard pack and mark `PHASE 125 COMPLETE`.
+- [x] Define Phase 126 interaction-session macro pass R signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 123-126.
+- [x] Run Phase 126 verification + guard pack and mark `PHASE 126 COMPLETE`.
+- [x] Define Phase 127 interaction-session factory runtime-bundle-factory inputs extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryRuntimeBundleFactoryInputs` ownership for interaction-session factory runtime-bundle-factory typed inputs.
+- [x] Run Phase 127 verification + guard pack and mark `PHASE 127 COMPLETE`.
+- [x] Define Phase 128 interaction-session factory runtime-bundle-factory typed-entry extraction scope and completion evidence gates.
+- [x] Extract typed-entry runtime-bundle factory seam ownership through `InteractionSessionFactoryRuntimeBundleFactoryInputs`.
+- [x] Run Phase 128 verification + guard pack and mark `PHASE 128 COMPLETE`.
+- [x] Define Phase 129 interaction-session factory wiring consolidation S scope and completion evidence gates.
+- [x] Consolidate public `InteractionSessionFactory.create(...)` seam through typed `InteractionSessionFactoryRuntimeBundleFactoryInputs` ownership.
+- [x] Run Phase 129 verification + guard pack and mark `PHASE 129 COMPLETE`.
+- [x] Define Phase 130 interaction-session macro pass S signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 127-130.
+- [x] Run Phase 130 verification + guard pack and mark `PHASE 130 COMPLETE`.
+- [x] Define Phase 131 interaction-session factory runtime-bundle assembly-inputs-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryRuntimeBundleAssemblyInputsFactory` ownership for interaction-session runtime-bundle-factory assembly-input seams.
+- [x] Run Phase 131 verification + guard pack and mark `PHASE 131 COMPLETE`.
+- [x] Define Phase 132 interaction-session factory runtime-bundle-factory input typed-entry extraction scope and completion evidence gates.
+- [x] Extract typed-entry runtime-bundle-factory input seam ownership through `InteractionSessionFactoryRuntimeBundleAssemblyInputsFactory` routing.
+- [x] Run Phase 132 verification + guard pack and mark `PHASE 132 COMPLETE`.
+- [x] Define Phase 133 interaction-session factory wiring consolidation T scope and completion evidence gates.
+- [x] Consolidate public `InteractionSessionFactory.create(...)` seam through typed runtime-bundle-factory input routing ownership.
+- [x] Run Phase 133 verification + guard pack and mark `PHASE 133 COMPLETE`.
+- [x] Define Phase 134 interaction-session macro pass T signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 131-134.
+- [x] Run Phase 134 verification + guard pack and mark `PHASE 134 COMPLETE`.
+- [x] Define Phase 135 interaction-session factory runtime-bundle-factory-inputs assembly-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryRuntimeBundleFactoryInputsAssemblyFactory` ownership for interaction-session assembly-input to runtime-bundle-factory-input mapping seams.
+- [x] Run Phase 135 verification + guard pack and mark `PHASE 135 COMPLETE`.
+- [x] Define Phase 136 interaction-session factory runtime-bundle assembly-entry typed-routing extraction scope and completion evidence gates.
+- [x] Extract typed assembly-entry runtime-bundle routing ownership through `InteractionSessionFactoryRuntimeBundleFactoryInputsAssemblyFactory`.
+- [x] Run Phase 136 verification + guard pack and mark `PHASE 136 COMPLETE`.
+- [x] Define Phase 137 interaction-session factory wiring consolidation U scope and completion evidence gates.
+- [x] Consolidate `InteractionSessionFactory.createFromAssemblyFactoryInputs(...)` through typed runtime-bundle-factory-input assembly mapping ownership.
+- [x] Run Phase 137 verification + guard pack and mark `PHASE 137 COMPLETE`.
+- [x] Define Phase 138 interaction-session macro pass U signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 135-138.
+- [x] Run Phase 138 verification + guard pack and mark `PHASE 138 COMPLETE`.
+- [x] Define Phase 139 interaction-session factory runtime-bundle-factory-inputs factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryRuntimeBundleFactoryInputsFactory` ownership for interaction-session runtime-bundle-factory typed-input construction seams.
+- [x] Run Phase 139 verification + guard pack and mark `PHASE 139 COMPLETE`.
+- [x] Define Phase 140 interaction-session factory runtime-bundle-factory input typed-entry routing extraction scope and completion evidence gates.
+- [x] Extract typed runtime-bundle-factory-input entry routing ownership through `InteractionSessionFactoryRuntimeBundleFactoryInputsFactory`.
+- [x] Run Phase 140 verification + guard pack and mark `PHASE 140 COMPLETE`.
+- [x] Define Phase 141 interaction-session factory wiring consolidation V scope and completion evidence gates.
+- [x] Consolidate `InteractionSessionFactory.createFromAssemblyFactoryInputs(...)` through runtime-bundle-factory typed input routing ownership.
+- [x] Run Phase 141 verification + guard pack and mark `PHASE 141 COMPLETE`.
+- [x] Define Phase 142 interaction-session macro pass V signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 139-142.
+- [x] Run Phase 142 verification + guard pack and mark `PHASE 142 COMPLETE`.
+- [x] Define Phase 143 interaction-session factory runtime-bundle default-assembly-inputs-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryRuntimeBundleDefaultAssemblyInputsFactory` ownership for interaction-session runtime-bundle default assembly-input construction seams.
+- [x] Run Phase 143 verification + guard pack and mark `PHASE 143 COMPLETE`.
+- [x] Define Phase 144 interaction-session factory runtime-bundle default-entry typed-routing extraction scope and completion evidence gates.
+- [x] Extract typed default-entry runtime-bundle routing ownership through `InteractionSessionFactoryRuntimeBundleDefaultAssemblyInputsFactory`.
+- [x] Run Phase 144 verification + guard pack and mark `PHASE 144 COMPLETE`.
+- [x] Define Phase 145 interaction-session factory wiring consolidation W scope and completion evidence gates.
+- [x] Consolidate `InteractionSessionFactory.createFromFactoryInputs(...)` through runtime-bundle-factory default assembly-input routing ownership.
+- [x] Run Phase 145 verification + guard pack and mark `PHASE 145 COMPLETE`.
+- [x] Define Phase 146 interaction-session macro pass W signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 143-146.
+- [x] Run Phase 146 verification + guard pack and mark `PHASE 146 COMPLETE`.
+- [x] Define Phase 147 interaction-session factory runtime-bundle default-factory-inputs-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryRuntimeBundleDefaultFactoryInputsFactory` ownership for interaction-session runtime-bundle default factory-input construction seams.
+- [x] Run Phase 147 verification + guard pack and mark `PHASE 147 COMPLETE`.
+- [x] Define Phase 148 interaction-session factory runtime-bundle default-factory-input typed-routing extraction scope and completion evidence gates.
+- [x] Extract typed default-entry runtime-bundle routing ownership through `InteractionSessionFactoryRuntimeBundleDefaultFactoryInputsFactory`.
+- [x] Run Phase 148 verification + guard pack and mark `PHASE 148 COMPLETE`.
+- [x] Define Phase 149 interaction-session factory wiring consolidation X scope and completion evidence gates.
+- [x] Consolidate `InteractionSessionFactory.createFromFactoryInputs(...)` through runtime-bundle-factory default factory-input routing ownership.
+- [x] Run Phase 149 verification + guard pack and mark `PHASE 149 COMPLETE`.
+- [x] Define Phase 150 interaction-session macro pass X signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 147-150.
+- [x] Run Phase 150 verification + guard pack and mark `PHASE 150 COMPLETE`.
+- [x] Define Phase 151 interaction-session factory runtime-bundle default-entry-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryRuntimeBundleDefaultEntryFactory` ownership for interaction-session runtime-bundle default-entry creation seams.
+- [x] Run Phase 151 verification + guard pack and mark `PHASE 151 COMPLETE`.
+- [x] Define Phase 152 interaction-session factory runtime-bundle default-factory-input typed-entry-routing extraction scope and completion evidence gates.
+- [x] Extract typed default-entry runtime-bundle routing ownership through `InteractionSessionFactoryRuntimeBundleDefaultEntryFactory`.
+- [x] Run Phase 152 verification + guard pack and mark `PHASE 152 COMPLETE`.
+- [x] Define Phase 153 interaction-session factory wiring consolidation Y scope and completion evidence gates.
+- [x] Consolidate `InteractionSessionFactory.createFromFactoryInputs(...)` through runtime-bundle-factory default-entry runtime-bundle routing ownership.
+- [x] Run Phase 153 verification + guard pack and mark `PHASE 153 COMPLETE`.
+- [x] Define Phase 154 interaction-session macro pass Y signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 151-154.
+- [x] Run Phase 154 verification + guard pack and mark `PHASE 154 COMPLETE`.
+- [x] Define Phase 155 interaction-session factory runtime-bundle default-factory-input runtime-bundle-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryRuntimeBundleDefaultFactoryInputRuntimeBundleFactory` ownership for default runtime-bundle-factory-input runtime-bundle creation seams.
+- [x] Run Phase 155 verification + guard pack and mark `PHASE 155 COMPLETE`.
+- [x] Define Phase 156 interaction-session factory runtime-bundle default-factory-input typed runtime-bundle routing extraction scope and completion evidence gates.
+- [x] Extract typed default-runtime-bundle-factory-input runtime-bundle routing ownership through `InteractionSessionFactoryRuntimeBundleDefaultFactoryInputRuntimeBundleFactory`.
+- [x] Run Phase 156 verification + guard pack and mark `PHASE 156 COMPLETE`.
+- [x] Define Phase 157 interaction-session factory runtime-bundle-factory wiring consolidation Z scope and completion evidence gates.
+- [x] Consolidate `InteractionSessionFactoryRuntimeBundleFactory.createRuntimeBundleFromDefaultRuntimeBundleFactoryInputs(...)` through focused default-entry routing ownership.
+- [x] Run Phase 157 verification + guard pack and mark `PHASE 157 COMPLETE`.
+- [x] Define Phase 158 interaction-session factory default-entry-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryDefaultEntryFactory` ownership for interaction-session factory default-entry creation seams.
+- [x] Run Phase 158 verification + guard pack and mark `PHASE 158 COMPLETE`.
+- [x] Define Phase 159 interaction-session factory default-entry wiring consolidation Z scope and completion evidence gates.
+- [x] Consolidate `InteractionSessionFactory.createFromFactoryInputs(...)` through focused `InteractionSessionFactoryDefaultEntryFactory` routing ownership.
+- [x] Run Phase 159 verification + guard pack and mark `PHASE 159 COMPLETE`.
+- [x] Define Phase 160 interaction-session macro pass Z signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 155-160.
+- [x] Run Phase 160 verification + guard pack and mark `PHASE 160 COMPLETE`.
+- [x] Define Phase 161 interaction-session factory default runtime-bundle-factory-inputs-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryDefaultRuntimeBundleFactoryInputsFactory` ownership for interaction-session default runtime-bundle-factory-input construction seams.
+- [x] Run Phase 161 verification + guard pack and mark `PHASE 161 COMPLETE`.
+- [x] Define Phase 162 interaction-session factory default runtime-bundle-factory-input typed routing extraction scope and completion evidence gates.
+- [x] Extract typed default runtime-bundle-factory-input routing ownership through `InteractionSessionFactoryDefaultRuntimeBundleFactoryInputsFactory`.
+- [x] Run Phase 162 verification + guard pack and mark `PHASE 162 COMPLETE`.
+- [x] Define Phase 163 interaction-session factory default-entry-factory wiring consolidation AA scope and completion evidence gates.
+- [x] Consolidate `InteractionSessionFactoryDefaultEntryFactory.createFromFactoryInputs(...)` through focused default runtime-bundle-factory-input construction ownership.
+- [x] Run Phase 163 verification + guard pack and mark `PHASE 163 COMPLETE`.
+- [x] Define Phase 164 interaction-session factory default-runtime-session-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryDefaultRuntimeSessionFactory` ownership for interaction-session default runtime session creation seams.
+- [x] Run Phase 164 verification + guard pack and mark `PHASE 164 COMPLETE`.
+- [x] Define Phase 165 interaction-session factory default-entry wiring consolidation AB scope and completion evidence gates.
+- [x] Consolidate `InteractionSessionFactory.createFromDefaultRuntimeBundleFactoryInputs(...)` through focused `InteractionSessionFactoryDefaultEntryFactory` routing ownership.
+- [x] Run Phase 165 verification + guard pack and mark `PHASE 165 COMPLETE`.
+- [x] Define Phase 166 interaction-session macro pass AB signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 161-166.
+- [x] Run Phase 166 verification + guard pack and mark `PHASE 166 COMPLETE`.
+- [x] Define Phase 167 interaction-session factory default-runtime-bundle-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryDefaultRuntimeBundleFactory` ownership for interaction-session default runtime-bundle creation seams.
+- [x] Run Phase 167 verification + guard pack and mark `PHASE 167 COMPLETE`.
+- [x] Define Phase 168 interaction-session factory default-runtime-bundle typed routing extraction scope and completion evidence gates.
+- [x] Extract typed default runtime-bundle routing ownership through `InteractionSessionFactoryDefaultRuntimeBundleFactory`.
+- [x] Run Phase 168 verification + guard pack and mark `PHASE 168 COMPLETE`.
+- [x] Define Phase 169 interaction-session factory default-runtime-session wiring consolidation AC scope and completion evidence gates.
+- [x] Consolidate `InteractionSessionFactoryDefaultRuntimeSessionFactory.createFromDefaultRuntimeBundleFactoryInputs(...)` through focused default runtime-bundle factory ownership.
+- [x] Run Phase 169 verification + guard pack and mark `PHASE 169 COMPLETE`.
+- [x] Define Phase 170 interaction-session factory default-entry-runtime-session-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryDefaultEntryRuntimeSessionFactory` ownership for interaction-session default-entry runtime-session routing seams.
+- [x] Run Phase 170 verification + guard pack and mark `PHASE 170 COMPLETE`.
+- [x] Define Phase 171 interaction-session factory default-entry wiring consolidation AC scope and completion evidence gates.
+- [x] Consolidate `InteractionSessionFactoryDefaultEntryFactory` routing through focused default-entry runtime-session factory ownership.
+- [x] Run Phase 171 verification + guard pack and mark `PHASE 171 COMPLETE`.
+- [x] Define Phase 172 interaction-session macro pass AC signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 167-172.
+- [x] Run Phase 172 verification + guard pack and mark `PHASE 172 COMPLETE`.
+- [x] Define Phase 173 interaction-session factory default-entry-runtime-bundle-factory-inputs-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryDefaultEntryRuntimeBundleFactoryInputsFactory` ownership for interaction-session default-entry runtime-bundle-factory-input construction seams.
+- [x] Run Phase 173 verification + guard pack and mark `PHASE 173 COMPLETE`.
+- [x] Define Phase 174 interaction-session factory default-entry-runtime-bundle-factory-input typed routing extraction scope and completion evidence gates.
+- [x] Extract typed default-entry runtime-bundle-factory-input routing ownership through `InteractionSessionFactoryDefaultEntryRuntimeBundleFactoryInputsFactory`.
+- [x] Run Phase 174 verification + guard pack and mark `PHASE 174 COMPLETE`.
+- [x] Define Phase 175 interaction-session factory default-entry wiring consolidation AD scope and completion evidence gates.
+- [x] Consolidate `InteractionSessionFactoryDefaultEntryFactory.createFromFactoryInputs(...)` through focused default-entry runtime-bundle-factory-input routing ownership.
+- [x] Run Phase 175 verification + guard pack and mark `PHASE 175 COMPLETE`.
+- [x] Define Phase 176 interaction-session factory default-factory-inputs-session-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryDefaultFactoryInputsSessionFactory` ownership for interaction-session default factory-input session creation seams.
+- [x] Run Phase 176 verification + guard pack and mark `PHASE 176 COMPLETE`.
+- [x] Define Phase 177 interaction-session factory wiring consolidation AC scope and completion evidence gates.
+- [x] Consolidate `InteractionSessionFactory.createFromFactoryInputs(...)` through focused default factory-input session routing ownership.
+- [x] Run Phase 177 verification + guard pack and mark `PHASE 177 COMPLETE`.
+- [x] Define Phase 178 interaction-session macro pass AD signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 173-178.
+- [x] Run Phase 178 verification + guard pack and mark `PHASE 178 COMPLETE`.
+- [x] Define Phase 179 interaction-session factory assembly-factory-inputs-session-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryAssemblyFactoryInputsSessionFactory` ownership for interaction-session assembly-factory-input session creation seams.
+- [x] Run Phase 179 verification + guard pack and mark `PHASE 179 COMPLETE`.
+- [x] Define Phase 180 interaction-session factory assembly-factory-input typed routing extraction scope and completion evidence gates.
+- [x] Consolidate `InteractionSessionFactory.createFromAssemblyFactoryInputs(...)` through focused assembly-factory-input session routing ownership.
+- [x] Run Phase 180 verification + guard pack and mark `PHASE 180 COMPLETE`.
+- [x] Define Phase 181 interaction-session factory runtime-bundle-factory-inputs-session-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryRuntimeBundleFactoryInputsSessionFactory` ownership for interaction-session runtime-bundle-factory-input session creation seams.
+- [x] Run Phase 181 verification + guard pack and mark `PHASE 181 COMPLETE`.
+- [x] Define Phase 182 interaction-session factory runtime-bundle-factory-input typed routing extraction scope and completion evidence gates.
+- [x] Consolidate `InteractionSessionFactory.createFromRuntimeBundleFactoryInputs(...)` through focused runtime-bundle-factory-input session routing ownership.
+- [x] Run Phase 182 verification + guard pack and mark `PHASE 182 COMPLETE`.
+- [x] Define Phase 183 interaction-session factory runtime-bundle-session-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryRuntimeBundleSessionFactory` ownership for interaction-session runtime-bundle/runtime-operations session routing seams.
+- [x] Run Phase 183 verification + guard pack and mark `PHASE 183 COMPLETE`.
+- [x] Define Phase 184 interaction-session macro pass AE signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 179-184.
+- [x] Run Phase 184 verification + guard pack and mark `PHASE 184 COMPLETE`.
+- [x] Define Phase 185 interaction-session factory default-runtime-bundle-factory-inputs-session-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryDefaultRuntimeBundleFactoryInputsSessionFactory` ownership for interaction-session default-runtime-bundle-factory-input session creation seams.
+- [x] Run Phase 185 verification + guard pack and mark `PHASE 185 COMPLETE`.
+- [x] Define Phase 186 interaction-session factory default-runtime-bundle-factory-input typed routing extraction scope and completion evidence gates.
+- [x] Consolidate `InteractionSessionFactory.createFromDefaultRuntimeBundleFactoryInputs(...)` through focused default-runtime-bundle-factory-input session routing ownership.
+- [x] Run Phase 186 verification + guard pack and mark `PHASE 186 COMPLETE`.
+- [x] Define Phase 187 interaction-session factory service-inputs-session-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryServiceInputsSessionFactory` ownership for interaction-session service-input session creation seams.
+- [x] Run Phase 187 verification + guard pack and mark `PHASE 187 COMPLETE`.
+- [x] Define Phase 188 interaction-session factory service-input typed routing extraction scope and completion evidence gates.
+- [x] Consolidate `InteractionSessionFactory.create(...)` through focused service-input session routing ownership.
+- [x] Run Phase 188 verification + guard pack and mark `PHASE 188 COMPLETE`.
+- [x] Define Phase 189 interaction-session factory entry-session-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryEntrySessionFactory` ownership for interaction-session top-level entry routing seams.
+- [x] Run Phase 189 verification + guard pack and mark `PHASE 189 COMPLETE`.
+- [x] Define Phase 190 interaction-session macro pass AF signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 185-190.
+- [x] Run Phase 190 verification + guard pack and mark `PHASE 190 COMPLETE`.
+- [x] Define Phase 191 interaction-session factory factory-inputs-session-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryFactoryInputsSessionFactory` ownership for interaction-session factory-input session creation seams.
+- [x] Run Phase 191 verification + guard pack and mark `PHASE 191 COMPLETE`.
+- [x] Define Phase 192 interaction-session factory factory-input typed routing extraction scope and completion evidence gates.
+- [x] Consolidate `InteractionSessionFactory.createFromFactoryInputs(...)` through focused factory-input session routing ownership.
+- [x] Run Phase 192 verification + guard pack and mark `PHASE 192 COMPLETE`.
+- [x] Define Phase 193 interaction-session factory assembly-runtime-session-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryAssemblyRuntimeSessionFactory` ownership for interaction-session assembly/runtime session routing seams.
+- [x] Run Phase 193 verification + guard pack and mark `PHASE 193 COMPLETE`.
+- [x] Define Phase 194 interaction-session factory assembly-runtime typed routing extraction scope and completion evidence gates.
+- [x] Consolidate `InteractionSessionFactory.createFromAssemblyFactoryInputs(...)` and `createFromRuntimeBundleFactoryInputs(...)` through focused assembly/runtime session routing ownership.
+- [x] Run Phase 194 verification + guard pack and mark `PHASE 194 COMPLETE`.
+- [x] Define Phase 195 interaction-session factory runtime-entry-session-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryRuntimeEntrySessionFactory` ownership for interaction-session runtime-entry session routing seams.
+- [x] Run Phase 195 verification + guard pack and mark `PHASE 195 COMPLETE`.
+- [x] Define Phase 196 interaction-session macro pass AG signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 191-196.
+- [x] Run Phase 196 verification + guard pack and mark `PHASE 196 COMPLETE`.
+- [x] Define Phase 197 interaction-session factory entry-service-inputs-session-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryEntryServiceInputsSessionFactory` ownership for interaction-session entry service-input session routing seams.
+- [x] Run Phase 197 verification + guard pack and mark `PHASE 197 COMPLETE`.
+- [x] Define Phase 198 interaction-session factory entry service-input typed routing extraction scope and completion evidence gates.
+- [x] Consolidate `InteractionSessionFactoryEntrySessionFactory.create(...)` through focused entry service-input session routing ownership.
+- [x] Run Phase 198 verification + guard pack and mark `PHASE 198 COMPLETE`.
+- [x] Define Phase 199 interaction-session factory entry-default-runtime-bundle-factory-inputs-session-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryEntryDefaultRuntimeBundleFactoryInputsSessionFactory` ownership for interaction-session entry default-runtime-bundle-factory-input session routing seams.
+- [x] Run Phase 199 verification + guard pack and mark `PHASE 199 COMPLETE`.
+- [x] Define Phase 200 interaction-session factory entry default-runtime-bundle-factory-input typed routing extraction scope and completion evidence gates.
+- [x] Consolidate `InteractionSessionFactoryEntrySessionFactory.createFromDefaultRuntimeBundleFactoryInputs(...)` through focused entry default-runtime-bundle-factory-input session routing ownership.
+- [x] Run Phase 200 verification + guard pack and mark `PHASE 200 COMPLETE`.
+- [x] Define Phase 201 interaction-session factory factory-inputs-default-session-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryFactoryInputsDefaultSessionFactory` ownership and route factory-input default seams through focused ownership.
+- [x] Run Phase 201 verification + guard pack and mark `PHASE 201 COMPLETE`.
+- [x] Define Phase 202 interaction-session macro pass AH signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 197-202.
+- [x] Run Phase 202 verification + guard pack and mark `PHASE 202 COMPLETE`.
+- [x] Define Phase 203 interaction-session factory assembly-runtime-assembly-session-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryAssemblyRuntimeAssemblySessionFactory` ownership for interaction-session assembly-runtime assembly session routing seams.
+- [x] Run Phase 203 verification + guard pack and mark `PHASE 203 COMPLETE`.
+- [x] Define Phase 204 interaction-session factory assembly-runtime assembly typed routing extraction scope and completion evidence gates.
+- [x] Consolidate `InteractionSessionFactoryAssemblyRuntimeSessionFactory.createFromAssemblyFactoryInputs(...)` through focused assembly-runtime assembly session routing ownership.
+- [x] Run Phase 204 verification + guard pack and mark `PHASE 204 COMPLETE`.
+- [x] Define Phase 205 interaction-session factory assembly-runtime-bundle-factory-inputs-session-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryAssemblyRuntimeBundleFactoryInputsSessionFactory` ownership for interaction-session assembly-runtime bundle-factory-input session routing seams.
+- [x] Run Phase 205 verification + guard pack and mark `PHASE 205 COMPLETE`.
+- [x] Define Phase 206 interaction-session factory assembly-runtime bundle-factory-input typed routing extraction scope and completion evidence gates.
+- [x] Consolidate `InteractionSessionFactoryAssemblyRuntimeSessionFactory.createFromRuntimeBundleFactoryInputs(...)` through focused assembly-runtime bundle-factory-input session routing ownership.
+- [x] Run Phase 206 verification + guard pack and mark `PHASE 206 COMPLETE`.
+- [x] Define Phase 207 interaction-session factory runtime-entry-runtime-session-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryRuntimeEntryRuntimeSessionFactory` ownership and route runtime-entry seams through focused ownership.
+- [x] Run Phase 207 verification + guard pack and mark `PHASE 207 COMPLETE`.
+- [x] Define Phase 208 interaction-session macro pass AI signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 203-208.
+- [x] Run Phase 208 verification + guard pack and mark `PHASE 208 COMPLETE`.
+- [x] Define Phase 209 interaction-session factory assembly-runtime-entry-assembly-session-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryAssemblyRuntimeEntryAssemblySessionFactory` ownership for interaction-session assembly-runtime entry assembly session routing seams.
+- [x] Run Phase 209 verification + guard pack and mark `PHASE 209 COMPLETE`.
+- [x] Define Phase 210 interaction-session factory assembly-runtime entry assembly typed routing extraction scope and completion evidence gates.
+- [x] Consolidate `InteractionSessionFactory.createFromAssemblyFactoryInputs(...)` through focused assembly-runtime entry assembly session routing ownership.
+- [x] Run Phase 210 verification + guard pack and mark `PHASE 210 COMPLETE`.
+- [x] Define Phase 211 interaction-session factory assembly-runtime-entry-bundle-factory-inputs-session-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryAssemblyRuntimeEntryBundleFactoryInputsSessionFactory` ownership for interaction-session assembly-runtime entry bundle-factory-input session routing seams.
+- [x] Run Phase 211 verification + guard pack and mark `PHASE 211 COMPLETE`.
+- [x] Define Phase 212 interaction-session factory assembly-runtime entry bundle-factory-input typed routing extraction scope and completion evidence gates.
+- [x] Consolidate `InteractionSessionFactory.createFromRuntimeBundleFactoryInputs(...)` through focused assembly-runtime entry bundle-factory-input session routing ownership.
+- [x] Run Phase 212 verification + guard pack and mark `PHASE 212 COMPLETE`.
+- [x] Define Phase 213 interaction-session factory entry-runtime-session-factory extraction scope and completion evidence gates.
+- [x] Extract focused `InteractionSessionFactoryEntryRuntimeSessionFactory` ownership and route entry runtime seams through focused ownership.
+- [x] Run Phase 213 verification + guard pack and mark `PHASE 213 COMPLETE`.
+- [x] Define Phase 214 interaction-session macro pass AJ signoff scope and completion evidence gates.
+- [x] Publish updated Java surface inventory and migration-plan/task/status artifacts for Phases 209-214.
+- [x] Run Phase 214 verification + guard pack and mark `PHASE 214 COMPLETE`.
+
+Phase status board: `docs/NATIVE_CLIENT_PHASE_STATUS.md`
+
+## Quick Verification Commands
+
+- Strict policy lock check:
+  - `PYTHONPATH=src python -m runelite_planner.main --dry-run`
+  - Expected: exits with `strict_remote_policy_violation remote_planner_url_required`.
+- Thin export check:
+  - `python scripts/export_thin_client_layout.py --output build/thin-client`
+  - `PYTHONPATH=build/thin-client/src python -m runelite_planner.main --help`
+- Targeted regression suite:
+  - `PYTHONPATH=src python -m unittest tests.test_remote_planner tests.test_control_plane tests.test_command_policy tests.test_kpi_dashboard tests.test_motion_engine tests.test_thin_export`
+- CI task-priority gate:
+  - `python scripts/verify_tasks_priority.py`
+- Java runtime ownership guard:
+  - `python scripts/verify_java_runtime_ownership_blocked.py`
+- Java shim retirement guard:
+  - `python scripts/verify_java_shim_retirement_gates.py`
+- Native-only operations hardening guard:
+  - `python scripts/verify_native_only_operations_hardening.py`
+- Native cutover gate:
+  - `python scripts/verify_native_cutover.py`
+- Native soak runner:
+  - `python scripts/run_native_soak.py --iterations 6 --pause-ms 250`
+- Native soak report gate:
+  - `python scripts/verify_native_soak_report.py --min-iterations 6 --max-failures 0 --max-age-hours 48`
+- Phase 12 native-default gate:
+  - `python scripts/verify_phase12_native_default.py`
+- Phase 13 executor-decomposition gate:
+  - `python scripts/verify_phase13_executor_decomposition.py`
+- Phase 14 executor-utility-decomposition gate:
+  - `python scripts/verify_phase14_executor_utility_decomposition.py`
+- Phase 15 drop-runtime-decomposition gate:
+  - `python scripts/verify_phase15_drop_runtime_decomposition.py`
+- Phase 16 motor pending-telemetry gate:
+  - `python scripts/verify_phase16_motor_pending_telemetry.py`
+- Phase 17 motor terminal decomposition gate:
+  - `python scripts/verify_phase17_motor_terminal_decomposition.py`
+- Phase 18 motor dispatch admission gate:
+  - `python scripts/verify_phase18_motor_dispatch_admission.py`
+- Phase 19 motor dispatch context gate:
+  - `python scripts/verify_phase19_motor_dispatch_context.py`
+- Phase 20 interaction click telemetry gate:
+  - `python scripts/verify_phase20_interaction_click_telemetry.py`
+- Phase 21 interaction anchor resolution gate:
+  - `python scripts/verify_phase21_interaction_anchor_resolution.py`
+- Phase 22 interaction click event packaging gate:
+  - `python scripts/verify_phase22_interaction_click_event_packaging.py`
+- Phase 23 interaction post-click settle gate:
+  - `python scripts/verify_phase23_interaction_post_click_settle.py`
+- Phase 24 interaction session ownership gate:
+  - `python scripts/verify_phase24_interaction_session_ownership.py`
+- Phase 25 interaction session host-factory gate:
+  - `python scripts/verify_phase25_interaction_session_host_factory.py`
+- Phase 26 interaction session command router gate:
+  - `python scripts/verify_phase26_interaction_session_command_router.py`
+- Phase 27 interaction session registration gate:
+  - `python scripts/verify_phase27_interaction_session_registration.py`
+- Phase 28 interaction session motor-ownership gate:
+  - `python scripts/verify_phase28_interaction_session_motor_ownership.py`
+- Phase 29 interaction session click-event intake gate:
+  - `python scripts/verify_phase29_interaction_session_click_event.py`
+- Phase 30 interaction session shutdown gate:
+  - `python scripts/verify_phase30_interaction_session_shutdown.py`
+- Phase 31 interaction session shutdown host-factory gate:
+  - `python scripts/verify_phase31_interaction_session_shutdown_host_factory.py`
+- Phase 32 interaction session click-event host-factory gate:
+  - `python scripts/verify_phase32_interaction_session_click_event_host_factory.py`
+- Phase 33 interaction session ownership service-factory gate:
+  - `python scripts/verify_phase33_interaction_session_ownership_service_factory.py`
+- Phase 34 interaction session motor-ownership service-factory gate:
+  - `python scripts/verify_phase34_interaction_session_motor_ownership_service_factory.py`
+- Phase 35 interaction session registration service-factory gate:
+  - `python scripts/verify_phase35_interaction_session_registration_service_factory.py`
+- Phase 36 interaction session post-click-settle service-factory gate:
+  - `python scripts/verify_phase36_interaction_session_post_click_settle_service_factory.py`
+- Phase 37 interaction session click-event service-factory gate:
+  - `python scripts/verify_phase37_interaction_session_click_event_service_factory.py`
+- Phase 38 interaction session shutdown service-factory gate:
+  - `python scripts/verify_phase38_interaction_session_shutdown_service_factory.py`
+- Phase 39 interaction session command router service-factory gate:
+  - `python scripts/verify_phase39_interaction_session_command_router_service_factory.py`
+- Phase 40 interaction session ownership-service host decomposition gate:
+  - `python scripts/verify_phase40_interaction_session_ownership_service_host_decomposition.py`
+- Phase 41 interaction session post-click-settle host decomposition gate:
+  - `python scripts/verify_phase41_interaction_session_post_click_settle_host_decomposition.py`
+- Phase 42 interaction session registration host decomposition gate:
+  - `python scripts/verify_phase42_interaction_session_registration_host_decomposition.py`
+- Phase 43 interaction session motor-ownership host decomposition gate:
+  - `python scripts/verify_phase43_interaction_session_motor_ownership_host_decomposition.py`
+- Phase 44 interaction session click-event host decomposition gate:
+  - `python scripts/verify_phase44_interaction_session_click_event_host_decomposition.py`
+- Phase 45 interaction session shutdown host decomposition gate:
+  - `python scripts/verify_phase45_interaction_session_shutdown_host_decomposition.py`
+- Phase 46 interaction session command-router host decomposition gate:
+  - `python scripts/verify_phase46_interaction_session_command_router_host_decomposition.py`
+- Phase 47 interaction session command-router host-factory extraction gate:
+  - `python scripts/verify_phase47_interaction_session_command_router_host_factory_extraction.py`
+- Phase 48 interaction session shutdown factory extraction gate:
+  - `python scripts/verify_phase48_interaction_session_shutdown_factory_extraction.py`
+- Phase 49 interaction session registration factory extraction gate:
+  - `python scripts/verify_phase49_interaction_session_registration_factory_extraction.py`
+- Phase 50 interaction session motor-ownership factory extraction gate:
+  - `python scripts/verify_phase50_interaction_session_motor_ownership_factory_extraction.py`
+- Phase 51 interaction session click-event factory extraction gate:
+  - `python scripts/verify_phase51_interaction_session_click_event_factory_extraction.py`
+- Phase 52 interaction session post-click-settle factory extraction gate:
+  - `python scripts/verify_phase52_interaction_session_post_click_settle_factory_extraction.py`
+- Phase 53 interaction session ownership factory extraction gate:
+  - `python scripts/verify_phase53_interaction_session_ownership_factory_extraction.py`
+- Phase 54 interaction session host-factory focused-factory consolidation gate:
+  - `python scripts/verify_phase54_interaction_session_host_factory_consolidation.py`
+- Phase 55 interaction session macro pass A signoff gate:
+  - `python scripts/verify_phase55_interaction_session_macro_pass_signoff.py`
+- Phase 56 interaction session command-router service factory extraction gate:
+  - `python scripts/verify_phase56_interaction_session_command_router_factory_extraction.py`
+- Phase 57 interaction session click-event host factory extraction gate:
+  - `python scripts/verify_phase57_interaction_session_click_event_host_factory_extraction.py`
+- Phase 58 interaction session host-factory consolidation B gate:
+  - `python scripts/verify_phase58_interaction_session_host_factory_consolidation_b.py`
+- Phase 59 interaction session macro pass B signoff gate:
+  - `python scripts/verify_phase59_interaction_session_macro_pass_b_signoff.py`
+- Phase 60 interaction session motor-ownership delegate factory extraction gate:
+  - `python scripts/verify_phase60_interaction_session_motor_ownership_delegate_factory_extraction.py`
+- Phase 61 interaction session shutdown delegate factory extraction gate:
+  - `python scripts/verify_phase61_interaction_session_shutdown_delegate_factory_extraction.py`
+- Phase 62 interaction session host-factory consolidation C gate:
+  - `python scripts/verify_phase62_interaction_session_host_factory_consolidation_c.py`
+- Phase 63 interaction session macro pass C signoff gate:
+  - `python scripts/verify_phase63_interaction_session_macro_pass_c_signoff.py`
+- Phase 64 interaction session registration service-from-host factory extraction gate:
+  - `python scripts/verify_phase64_interaction_session_registration_service_factory_extraction.py`
+- Phase 65 interaction session ownership service-from-host factory extraction gate:
+  - `python scripts/verify_phase65_interaction_session_ownership_service_factory_extraction.py`
+- Phase 66 interaction session host-factory consolidation D gate:
+  - `python scripts/verify_phase66_interaction_session_host_factory_consolidation_d.py`
+- Phase 67 interaction session macro pass D signoff gate:
+  - `python scripts/verify_phase67_interaction_session_macro_pass_d_signoff.py`
+- Phase 68 interaction session click-event delegate-host factory extraction gate:
+  - `python scripts/verify_phase68_interaction_session_click_event_delegate_host_factory_extraction.py`
+- Phase 69 interaction session shutdown delegate-host factory extraction gate:
+  - `python scripts/verify_phase69_interaction_session_shutdown_delegate_host_factory_extraction.py`
+- Phase 70 interaction session host-factory consolidation E gate:
+  - `python scripts/verify_phase70_interaction_session_host_factory_consolidation_e.py`
+- Phase 71 interaction session macro pass E signoff gate:
+  - `python scripts/verify_phase71_interaction_session_macro_pass_e_signoff.py`
+- Phase 72 interaction session click-event service factory extraction gate:
+  - `python scripts/verify_phase72_interaction_session_click_event_service_factory_extraction.py`
+- Phase 73 interaction session shutdown service factory extraction gate:
+  - `python scripts/verify_phase73_interaction_session_shutdown_service_factory_extraction.py`
+- Phase 74 interaction session host-factory consolidation F gate:
+  - `python scripts/verify_phase74_interaction_session_host_factory_consolidation_f.py`
+- Phase 75 interaction session macro pass F signoff gate:
+  - `python scripts/verify_phase75_interaction_session_macro_pass_f_signoff.py`
+- Phase 76 interaction session registration service composite factory extraction gate:
+  - `python scripts/verify_phase76_interaction_session_registration_service_composite_factory_extraction.py`
+- Phase 77 interaction session motor service composite factory extraction gate:
+  - `python scripts/verify_phase77_interaction_session_motor_service_composite_factory_extraction.py`
+- Phase 78 interaction session host-factory consolidation G gate:
+  - `python scripts/verify_phase78_interaction_session_host_factory_consolidation_g.py`
+- Phase 79 interaction session macro pass G signoff gate:
+  - `python scripts/verify_phase79_interaction_session_macro_pass_g_signoff.py`
+- Phase 80 interaction session post-click-settle service composite factory extraction gate:
+  - `python scripts/verify_phase80_interaction_session_post_click_settle_service_composite_factory_extraction.py`
+- Phase 81 interaction session command-router service composite factory extraction gate:
+  - `python scripts/verify_phase81_interaction_session_command_router_service_composite_factory_extraction.py`
+- Phase 82 interaction session host-factory consolidation H gate:
+  - `python scripts/verify_phase82_interaction_session_host_factory_consolidation_h.py`
+- Phase 83 interaction session macro pass H signoff gate:
+  - `python scripts/verify_phase83_interaction_session_macro_pass_h_signoff.py`
+- Phase 84 interaction session ownership service composite factory extraction gate:
+  - `python scripts/verify_phase84_interaction_session_ownership_service_composite_factory_extraction.py`
+- Phase 85 interaction session host-factory consolidation I gate:
+  - `python scripts/verify_phase85_interaction_session_host_factory_consolidation_i.py`
+- Phase 86 interaction session macro pass I signoff gate:
+  - `python scripts/verify_phase86_interaction_session_macro_pass_i_signoff.py`
+- Phase 87 interaction session assembly factory extraction gate:
+  - `python scripts/verify_phase87_interaction_session_assembly_factory_extraction.py`
+- Phase 88 interaction session assembly consolidation J gate:
+  - `python scripts/verify_phase88_interaction_session_assembly_consolidation_j.py`
+- Phase 89 interaction session macro pass J signoff gate:
+  - `python scripts/verify_phase89_interaction_session_macro_pass_j_signoff.py`
+- Phase 90 interaction session runtime bundle factory extraction gate:
+  - `python scripts/verify_phase90_interaction_session_runtime_bundle_factory_extraction.py`
+- Phase 91 interaction session assembly consolidation K gate:
+  - `python scripts/verify_phase91_interaction_session_assembly_consolidation_k.py`
+- Phase 92 interaction session macro pass K signoff gate:
+  - `python scripts/verify_phase92_interaction_session_macro_pass_k_signoff.py`
+- Phase 93 interaction session constructor runtime-bundle extraction gate:
+  - `python scripts/verify_phase93_interaction_session_constructor_runtime_bundle_extraction.py`
+- Phase 94 interaction session factory extraction gate:
+  - `python scripts/verify_phase94_interaction_session_factory_extraction.py`
+- Phase 95 interaction session wiring consolidation L gate:
+  - `python scripts/verify_phase95_interaction_session_wiring_consolidation_l.py`
+- Phase 96 interaction session macro pass L signoff gate:
+  - `python scripts/verify_phase96_interaction_session_macro_pass_l_signoff.py`
+- Phase 97 interaction session runtime operations extraction gate:
+  - `python scripts/verify_phase97_interaction_session_runtime_operations_extraction.py`
+- Phase 98 interaction session runtime operations factory extraction gate:
+  - `python scripts/verify_phase98_interaction_session_runtime_operations_factory_extraction.py`
+- Phase 99 interaction session wiring consolidation M gate:
+  - `python scripts/verify_phase99_interaction_session_wiring_consolidation_m.py`
+- Phase 100 interaction session macro pass M signoff gate:
+  - `python scripts/verify_phase100_interaction_session_macro_pass_m_signoff.py`
+- Phase 101 interaction session runtime operations bundle extraction gate:
+  - `python scripts/verify_phase101_interaction_session_runtime_operations_bundle_extraction.py`
+- Phase 102 interaction session runtime control bundle extraction gate:
+  - `python scripts/verify_phase102_interaction_session_runtime_control_bundle_extraction.py`
+- Phase 103 interaction session runtime bundle factory inputs extraction gate:
+  - `python scripts/verify_phase103_interaction_session_runtime_bundle_factory_inputs_extraction.py`
+- Phase 104 interaction session runtime bundle factory typed-entry extraction gate:
+  - `python scripts/verify_phase104_interaction_session_runtime_bundle_factory_typed_entry_extraction.py`
+- Phase 105 interaction session assembly wiring consolidation N gate:
+  - `python scripts/verify_phase105_interaction_session_assembly_wiring_consolidation_n.py`
+- Phase 106 interaction session macro pass N signoff gate:
+  - `python scripts/verify_phase106_interaction_session_macro_pass_n_signoff.py`
+- Phase 107 interaction session assembly factory inputs extraction gate:
+  - `python scripts/verify_phase107_interaction_session_assembly_factory_inputs_extraction.py`
+- Phase 108 interaction session assembly factory typed-entry extraction gate:
+  - `python scripts/verify_phase108_interaction_session_assembly_factory_typed_entry_extraction.py`
+- Phase 109 interaction session factory wiring consolidation O gate:
+  - `python scripts/verify_phase109_interaction_session_factory_wiring_consolidation_o.py`
+- Phase 110 interaction session macro pass O signoff gate:
+  - `python scripts/verify_phase110_interaction_session_macro_pass_o_signoff.py`
+- Phase 115 interaction session factory inputs extraction gate:
+  - `python scripts/verify_phase115_interaction_session_factory_inputs_extraction.py`
+- Phase 116 interaction session factory typed-entry extraction gate:
+  - `python scripts/verify_phase116_interaction_session_factory_typed_entry_extraction.py`
+- Phase 117 interaction session factory wiring consolidation P gate:
+  - `python scripts/verify_phase117_interaction_session_factory_wiring_consolidation_p.py`
+- Phase 118 interaction session macro pass P signoff gate:
+  - `python scripts/verify_phase118_interaction_session_macro_pass_p_signoff.py`
+- Phase 119 interaction session factory runtime-bundle-factory extraction gate:
+  - `python scripts/verify_phase119_interaction_session_factory_runtime_bundle_factory_extraction.py`
+- Phase 120 interaction session factory runtime-bundle typed-entry extraction gate:
+  - `python scripts/verify_phase120_interaction_session_factory_runtime_bundle_typed_entry_extraction.py`
+- Phase 121 interaction session factory wiring consolidation Q gate:
+  - `python scripts/verify_phase121_interaction_session_factory_wiring_consolidation_q.py`
+- Phase 122 interaction session macro pass Q signoff gate:
+  - `python scripts/verify_phase122_interaction_session_macro_pass_q_signoff.py`
+- Phase 123 interaction session factory runtime-bundle key-policy extraction gate:
+  - `python scripts/verify_phase123_interaction_session_factory_runtime_bundle_key_policy_extraction.py`
+- Phase 124 interaction session factory runtime-bundle default-entry extraction gate:
+  - `python scripts/verify_phase124_interaction_session_factory_runtime_bundle_default_entry_extraction.py`
+- Phase 125 interaction session factory wiring consolidation R gate:
+  - `python scripts/verify_phase125_interaction_session_factory_wiring_consolidation_r.py`
+- Phase 126 interaction session macro pass R signoff gate:
+  - `python scripts/verify_phase126_interaction_session_macro_pass_r_signoff.py`
+- Phase 127 interaction session factory runtime-bundle-factory inputs extraction gate:
+  - `python scripts/verify_phase127_interaction_session_factory_runtime_bundle_factory_inputs_extraction.py`
+- Phase 128 interaction session factory runtime-bundle-factory typed-entry extraction gate:
+  - `python scripts/verify_phase128_interaction_session_factory_runtime_bundle_factory_typed_entry_extraction.py`
+- Phase 129 interaction session factory wiring consolidation S gate:
+  - `python scripts/verify_phase129_interaction_session_factory_wiring_consolidation_s.py`
+- Phase 130 interaction session macro pass S signoff gate:
+  - `python scripts/verify_phase130_interaction_session_macro_pass_s_signoff.py`
+- Phase 131 interaction session factory runtime-bundle assembly-inputs-factory extraction gate:
+  - `python scripts/verify_phase131_interaction_session_factory_runtime_bundle_assembly_inputs_factory_extraction.py`
+- Phase 132 interaction session factory runtime-bundle-factory input typed-entry extraction gate:
+  - `python scripts/verify_phase132_interaction_session_factory_runtime_bundle_factory_input_typed_entry_extraction.py`
+- Phase 133 interaction session factory wiring consolidation T gate:
+  - `python scripts/verify_phase133_interaction_session_factory_wiring_consolidation_t.py`
+- Phase 134 interaction session macro pass T signoff gate:
+  - `python scripts/verify_phase134_interaction_session_macro_pass_t_signoff.py`
+- Phase 135 interaction session factory runtime-bundle-factory-inputs assembly-factory extraction gate:
+  - `python scripts/verify_phase135_interaction_session_factory_runtime_bundle_factory_inputs_assembly_factory_extraction.py`
+- Phase 136 interaction session factory runtime-bundle assembly-entry typed-routing extraction gate:
+  - `python scripts/verify_phase136_interaction_session_factory_runtime_bundle_assembly_entry_typed_routing_extraction.py`
+- Phase 137 interaction session factory wiring consolidation U gate:
+  - `python scripts/verify_phase137_interaction_session_factory_wiring_consolidation_u.py`
+- Phase 138 interaction session macro pass U signoff gate:
+  - `python scripts/verify_phase138_interaction_session_macro_pass_u_signoff.py`
+- Phase 139 interaction session factory runtime-bundle-factory-inputs factory extraction gate:
+  - `python scripts/verify_phase139_interaction_session_factory_runtime_bundle_factory_inputs_factory_extraction.py`
+- Phase 140 interaction session factory runtime-bundle-factory input typed-entry routing extraction gate:
+  - `python scripts/verify_phase140_interaction_session_factory_runtime_bundle_factory_input_typed_entry_routing_extraction.py`
+- Phase 141 interaction session factory wiring consolidation V gate:
+  - `python scripts/verify_phase141_interaction_session_factory_wiring_consolidation_v.py`
+- Phase 142 interaction session macro pass V signoff gate:
+  - `python scripts/verify_phase142_interaction_session_macro_pass_v_signoff.py`
+- Phase 143 interaction session factory runtime-bundle default-assembly-inputs-factory extraction gate:
+  - `python scripts/verify_phase143_interaction_session_factory_runtime_bundle_default_assembly_inputs_factory_extraction.py`
+- Phase 144 interaction session factory runtime-bundle default-entry typed-routing extraction gate:
+  - `python scripts/verify_phase144_interaction_session_factory_runtime_bundle_default_entry_typed_routing_extraction.py`
+- Phase 145 interaction session factory wiring consolidation W gate:
+  - `python scripts/verify_phase145_interaction_session_factory_wiring_consolidation_w.py`
+- Phase 146 interaction session macro pass W signoff gate:
+  - `python scripts/verify_phase146_interaction_session_macro_pass_w_signoff.py`
+- Phase 147 interaction session factory runtime-bundle default-factory-inputs-factory extraction gate:
+  - `python scripts/verify_phase147_interaction_session_factory_runtime_bundle_default_factory_inputs_factory_extraction.py`
+- Phase 148 interaction session factory runtime-bundle default-factory-input typed-routing extraction gate:
+  - `python scripts/verify_phase148_interaction_session_factory_runtime_bundle_default_factory_input_typed_routing_extraction.py`
+- Phase 149 interaction session factory wiring consolidation X gate:
+  - `python scripts/verify_phase149_interaction_session_factory_wiring_consolidation_x.py`
+- Phase 150 interaction session macro pass X signoff gate:
+  - `python scripts/verify_phase150_interaction_session_macro_pass_x_signoff.py`
+- Phase 151 interaction session factory runtime-bundle default-entry-factory extraction gate:
+  - `python scripts/verify_phase151_interaction_session_factory_runtime_bundle_default_entry_factory_extraction.py`
+- Phase 152 interaction session factory runtime-bundle default-factory-input typed-entry-routing extraction gate:
+  - `python scripts/verify_phase152_interaction_session_factory_runtime_bundle_default_factory_input_typed_entry_routing_extraction.py`
+- Phase 153 interaction session factory wiring consolidation Y gate:
+  - `python scripts/verify_phase153_interaction_session_factory_wiring_consolidation_y.py`
+- Phase 154 interaction session macro pass Y signoff gate:
+  - `python scripts/verify_phase154_interaction_session_macro_pass_y_signoff.py`
+- Phase 155 interaction session factory runtime-bundle default-factory-input runtime-bundle-factory extraction gate:
+  - `python scripts/verify_phase155_interaction_session_factory_runtime_bundle_default_factory_input_runtime_bundle_factory_extraction.py`
+- Phase 156 interaction session factory runtime-bundle default-factory-input typed runtime-bundle routing extraction gate:
+  - `python scripts/verify_phase156_interaction_session_factory_runtime_bundle_default_factory_input_typed_runtime_bundle_routing_extraction.py`
+- Phase 157 interaction session factory runtime-bundle-factory wiring consolidation Z gate:
+  - `python scripts/verify_phase157_interaction_session_factory_runtime_bundle_factory_wiring_consolidation_z.py`
+- Phase 158 interaction session factory default-entry-factory extraction gate:
+  - `python scripts/verify_phase158_interaction_session_factory_default_entry_factory_extraction.py`
+- Phase 159 interaction session factory default-entry wiring consolidation Z gate:
+  - `python scripts/verify_phase159_interaction_session_factory_default_entry_wiring_consolidation_z.py`
+- Phase 160 interaction session macro pass Z signoff gate:
+  - `python scripts/verify_phase160_interaction_session_macro_pass_z_signoff.py`
+- Phase 161 interaction session factory default runtime-bundle-factory-inputs-factory extraction gate:
+  - `python scripts/verify_phase161_interaction_session_factory_default_runtime_bundle_factory_inputs_factory_extraction.py`
+- Phase 162 interaction session factory default runtime-bundle-factory-input typed routing extraction gate:
+  - `python scripts/verify_phase162_interaction_session_factory_default_runtime_bundle_factory_input_typed_routing_extraction.py`
+- Phase 163 interaction session factory default-entry-factory wiring consolidation AA gate:
+  - `python scripts/verify_phase163_interaction_session_factory_default_entry_factory_wiring_consolidation_aa.py`
+- Phase 164 interaction session factory default-runtime-session-factory extraction gate:
+  - `python scripts/verify_phase164_interaction_session_factory_default_runtime_session_factory_extraction.py`
+- Phase 165 interaction session factory default-entry wiring consolidation AB gate:
+  - `python scripts/verify_phase165_interaction_session_factory_default_entry_wiring_consolidation_ab.py`
+- Phase 166 interaction session macro pass AB signoff gate:
+  - `python scripts/verify_phase166_interaction_session_macro_pass_ab_signoff.py`
+- Phase 167 interaction session factory default-runtime-bundle-factory extraction gate:
+  - `python scripts/verify_phase167_interaction_session_factory_default_runtime_bundle_factory_extraction.py`
+- Phase 168 interaction session factory default-runtime-bundle typed routing extraction gate:
+  - `python scripts/verify_phase168_interaction_session_factory_default_runtime_bundle_typed_routing_extraction.py`
+- Phase 169 interaction session factory default-runtime-session wiring consolidation AC gate:
+  - `python scripts/verify_phase169_interaction_session_factory_default_runtime_session_wiring_consolidation_ac.py`
+- Phase 170 interaction session factory default-entry-runtime-session-factory extraction gate:
+  - `python scripts/verify_phase170_interaction_session_factory_default_entry_runtime_session_factory_extraction.py`
+- Phase 171 interaction session factory default-entry wiring consolidation AC gate:
+  - `python scripts/verify_phase171_interaction_session_factory_default_entry_wiring_consolidation_ac.py`
+- Phase 172 interaction session macro pass AC signoff gate:
+  - `python scripts/verify_phase172_interaction_session_macro_pass_ac_signoff.py`
+- Phase 173 interaction session factory default-entry-runtime-bundle-factory-inputs-factory extraction gate:
+  - `python scripts/verify_phase173_interaction_session_factory_default_entry_runtime_bundle_factory_inputs_factory_extraction.py`
+- Phase 174 interaction session factory default-entry-runtime-bundle-factory-input typed routing extraction gate:
+  - `python scripts/verify_phase174_interaction_session_factory_default_entry_runtime_bundle_factory_input_typed_routing_extraction.py`
+- Phase 175 interaction session factory default-entry wiring consolidation AD gate:
+  - `python scripts/verify_phase175_interaction_session_factory_default_entry_wiring_consolidation_ad.py`
+- Phase 176 interaction session factory default-factory-inputs-session-factory extraction gate:
+  - `python scripts/verify_phase176_interaction_session_factory_default_factory_inputs_session_factory_extraction.py`
+- Phase 177 interaction session factory wiring consolidation AC gate:
+  - `python scripts/verify_phase177_interaction_session_factory_wiring_consolidation_ac.py`
+- Phase 178 interaction session macro pass AD signoff gate:
+  - `python scripts/verify_phase178_interaction_session_macro_pass_ad_signoff.py`
+- Phase 179 interaction session factory assembly-factory-inputs-session-factory extraction gate:
+  - `python scripts/verify_phase179_interaction_session_factory_assembly_factory_inputs_session_factory_extraction.py`
+- Phase 180 interaction session factory assembly-factory-input typed routing extraction gate:
+  - `python scripts/verify_phase180_interaction_session_factory_assembly_factory_input_typed_routing_extraction.py`
+- Phase 181 interaction session factory runtime-bundle-factory-inputs-session-factory extraction gate:
+  - `python scripts/verify_phase181_interaction_session_factory_runtime_bundle_factory_inputs_session_factory_extraction.py`
+- Phase 182 interaction session factory runtime-bundle-factory-input typed routing extraction gate:
+  - `python scripts/verify_phase182_interaction_session_factory_runtime_bundle_factory_input_typed_routing_extraction.py`
+- Phase 183 interaction session factory runtime-bundle-session-factory extraction gate:
+  - `python scripts/verify_phase183_interaction_session_factory_runtime_bundle_session_factory_extraction.py`
+- Phase 184 interaction session macro pass AE signoff gate:
+  - `python scripts/verify_phase184_interaction_session_macro_pass_ae_signoff.py`
+- Phase 185 interaction session factory default-runtime-bundle-factory-inputs-session-factory extraction gate:
+  - `python scripts/verify_phase185_interaction_session_factory_default_runtime_bundle_factory_inputs_session_factory_extraction.py`
+- Phase 186 interaction session factory default-runtime-bundle-factory-input typed routing extraction gate:
+  - `python scripts/verify_phase186_interaction_session_factory_default_runtime_bundle_factory_input_typed_routing_extraction.py`
+- Phase 187 interaction session factory service-inputs-session-factory extraction gate:
+  - `python scripts/verify_phase187_interaction_session_factory_service_inputs_session_factory_extraction.py`
+- Phase 188 interaction session factory service-input typed routing extraction gate:
+  - `python scripts/verify_phase188_interaction_session_factory_service_input_typed_routing_extraction.py`
+- Phase 189 interaction session factory entry-session-factory extraction gate:
+  - `python scripts/verify_phase189_interaction_session_factory_entry_session_factory_extraction.py`
+- Phase 190 interaction session macro pass AF signoff gate:
+  - `python scripts/verify_phase190_interaction_session_macro_pass_af_signoff.py`
+- Phase 191 interaction session factory factory-inputs-session-factory extraction gate:
+  - `python scripts/verify_phase191_interaction_session_factory_factory_inputs_session_factory_extraction.py`
+- Phase 192 interaction session factory factory-input typed routing extraction gate:
+  - `python scripts/verify_phase192_interaction_session_factory_factory_input_typed_routing_extraction.py`
+- Phase 193 interaction session factory assembly-runtime-session-factory extraction gate:
+  - `python scripts/verify_phase193_interaction_session_factory_assembly_runtime_session_factory_extraction.py`
+- Phase 194 interaction session factory assembly-runtime typed routing extraction gate:
+  - `python scripts/verify_phase194_interaction_session_factory_assembly_runtime_typed_routing_extraction.py`
+- Phase 195 interaction session factory runtime-entry-session-factory extraction gate:
+  - `python scripts/verify_phase195_interaction_session_factory_runtime_entry_session_factory_extraction.py`
+- Phase 196 interaction session macro pass AG signoff gate:
+  - `python scripts/verify_phase196_interaction_session_macro_pass_ag_signoff.py`
+- Phase 197 interaction session factory entry-service-inputs-session-factory extraction gate:
+  - `python scripts/verify_phase197_interaction_session_factory_entry_service_inputs_session_factory_extraction.py`
+- Phase 198 interaction session factory entry service-input typed routing extraction gate:
+  - `python scripts/verify_phase198_interaction_session_factory_entry_service_input_typed_routing_extraction.py`
+- Phase 199 interaction session factory entry-default-runtime-bundle-factory-inputs-session-factory extraction gate:
+  - `python scripts/verify_phase199_interaction_session_factory_entry_default_runtime_bundle_factory_inputs_session_factory_extraction.py`
+- Phase 200 interaction session factory entry default-runtime-bundle-factory-input typed routing extraction gate:
+  - `python scripts/verify_phase200_interaction_session_factory_entry_default_runtime_bundle_factory_input_typed_routing_extraction.py`
+- Phase 201 interaction session factory factory-inputs-default-session-factory extraction gate:
+  - `python scripts/verify_phase201_interaction_session_factory_factory_inputs_default_session_factory_extraction.py`
+- Phase 202 interaction session macro pass AH signoff gate:
+  - `python scripts/verify_phase202_interaction_session_macro_pass_ah_signoff.py`
+- Phase 203 interaction session factory assembly-runtime-assembly-session-factory extraction gate:
+  - `python scripts/verify_phase203_interaction_session_factory_assembly_runtime_assembly_session_factory_extraction.py`
+- Phase 204 interaction session factory assembly-runtime assembly typed routing extraction gate:
+  - `python scripts/verify_phase204_interaction_session_factory_assembly_runtime_assembly_typed_routing_extraction.py`
+- Phase 205 interaction session factory assembly-runtime-bundle-factory-inputs-session-factory extraction gate:
+  - `python scripts/verify_phase205_interaction_session_factory_assembly_runtime_bundle_factory_inputs_session_factory_extraction.py`
+- Phase 206 interaction session factory assembly-runtime bundle-factory-input typed routing extraction gate:
+  - `python scripts/verify_phase206_interaction_session_factory_assembly_runtime_bundle_factory_input_typed_routing_extraction.py`
+- Phase 207 interaction session factory runtime-entry-runtime-session-factory extraction gate:
+  - `python scripts/verify_phase207_interaction_session_factory_runtime_entry_runtime_session_factory_extraction.py`
+- Phase 208 interaction session macro pass AI signoff gate:
+  - `python scripts/verify_phase208_interaction_session_macro_pass_ai_signoff.py`
+- Phase 209 interaction session factory assembly-runtime-entry-assembly-session-factory extraction gate:
+  - `python scripts/verify_phase209_interaction_session_factory_assembly_runtime_entry_assembly_session_factory_extraction.py`
+- Phase 210 interaction session factory assembly-runtime entry assembly typed routing extraction gate:
+  - `python scripts/verify_phase210_interaction_session_factory_assembly_runtime_entry_assembly_typed_routing_extraction.py`
+- Phase 211 interaction session factory assembly-runtime-entry-bundle-factory-inputs-session-factory extraction gate:
+  - `python scripts/verify_phase211_interaction_session_factory_assembly_runtime_entry_bundle_factory_inputs_session_factory_extraction.py`
+- Phase 212 interaction session factory assembly-runtime entry bundle-factory-input typed routing extraction gate:
+  - `python scripts/verify_phase212_interaction_session_factory_assembly_runtime_entry_bundle_factory_input_typed_routing_extraction.py`
+- Phase 213 interaction session factory entry-runtime-session-factory extraction gate:
+  - `python scripts/verify_phase213_interaction_session_factory_entry_runtime_session_factory_extraction.py`
+- Phase 214 interaction session macro pass AJ signoff gate:
+  - `python scripts/verify_phase214_interaction_session_macro_pass_aj_signoff.py`

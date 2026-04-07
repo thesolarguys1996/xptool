@@ -1,0 +1,112 @@
+from __future__ import annotations
+
+from pathlib import Path
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PHASE90_PLAN = PROJECT_ROOT / "docs/NATIVE_CLIENT_PHASE90_INTERACTION_SESSION_RUNTIME_BUNDLE_FACTORY_EXTRACTION_PLAN.md"
+MIGRATION_PLAN = PROJECT_ROOT / "docs/NATIVE_CLIENT_MIGRATION_PLAN.md"
+PHASE_STATUS = PROJECT_ROOT / "docs/NATIVE_CLIENT_PHASE_STATUS.md"
+TASKS = PROJECT_ROOT / "TASKS.md"
+ASSEMBLY_FACTORY = PROJECT_ROOT / "runelite-plugin/src/main/java/com/xptool/sessions/InteractionSessionAssemblyFactory.java"
+RUNTIME_BUNDLE_FACTORY = (
+    PROJECT_ROOT / "runelite-plugin/src/main/java/com/xptool/sessions/InteractionSessionRuntimeBundleFactory.java"
+)
+RUNTIME_BUNDLE_FACTORY_TEST = (
+    PROJECT_ROOT / "runelite-plugin/src/test/java/com/xptool/sessions/InteractionSessionRuntimeBundleFactoryTest.java"
+)
+
+
+def _read(path: Path) -> str:
+    return path.read_text(encoding="utf-8")
+
+
+def main() -> int:
+    errors: list[str] = []
+
+    required_paths = [
+        PHASE90_PLAN,
+        MIGRATION_PLAN,
+        PHASE_STATUS,
+        TASKS,
+        ASSEMBLY_FACTORY,
+        RUNTIME_BUNDLE_FACTORY,
+        RUNTIME_BUNDLE_FACTORY_TEST,
+    ]
+    for path in required_paths:
+        if not path.exists():
+            errors.append(f"missing_required_path:{path}")
+
+    if errors:
+        print("[phase90-interaction-session-runtime-bundle-factory-extraction] FAILED")
+        for error in errors:
+            print(f"[phase90-interaction-session-runtime-bundle-factory-extraction] ERROR {error}")
+        return 1
+
+    phase90_plan_text = _read(PHASE90_PLAN)
+    migration_plan_text = _read(MIGRATION_PLAN)
+    phase_status_text = _read(PHASE_STATUS)
+    tasks_text = _read(TASKS)
+    assembly_factory_text = _read(ASSEMBLY_FACTORY)
+    runtime_bundle_factory_text = _read(RUNTIME_BUNDLE_FACTORY)
+    runtime_bundle_factory_test_text = _read(RUNTIME_BUNDLE_FACTORY_TEST)
+
+    if "## Phase 90 Slice Status" not in phase90_plan_text:
+        errors.append("phase90_plan_missing_slice_status")
+    if "`90.1` complete." not in phase90_plan_text:
+        errors.append("phase90_plan_missing_90_1_complete")
+    if "`90.2` complete." not in phase90_plan_text:
+        errors.append("phase90_plan_missing_90_2_complete")
+    if "`90.3` complete." not in phase90_plan_text:
+        errors.append("phase90_plan_missing_90_3_complete")
+
+    if "## Phase 90 (Interaction Session Runtime Bundle Factory Extraction)" not in migration_plan_text:
+        errors.append("migration_plan_missing_phase90_section")
+
+    if "PHASE 90 STARTED" not in phase_status_text:
+        errors.append("phase_status_missing_phase90_started")
+    if "PHASE 90 COMPLETE" not in phase_status_text:
+        errors.append("phase_status_missing_phase90_complete")
+
+    required_tasks = [
+        "- [x] Define Phase 90 interaction session runtime bundle factory extraction scope and completion evidence gates.",
+        "- [x] Extract interaction-session runtime bundle construction into focused `InteractionSessionRuntimeBundleFactory` ownership.",
+        "- [x] Run Phase 90 verification + guard pack and mark `PHASE 90 COMPLETE`.",
+    ]
+    for task_line in required_tasks:
+        if task_line not in tasks_text:
+            errors.append(f"tasks_missing_phase90_line:{task_line}")
+
+    if "InteractionSessionRuntimeBundleFactory.createRuntimeBundleFromServices(" not in assembly_factory_text:
+        errors.append("assembly_factory_missing_runtime_bundle_factory_delegation")
+
+    compatibility_strings = [
+        "return new InteractionSessionRuntimeBundle(",
+        "static InteractionSessionRuntimeBundle createRuntimeBundleFromServices(",
+    ]
+    for compatibility_string in compatibility_strings:
+        if compatibility_string not in assembly_factory_text:
+            errors.append(f"assembly_factory_missing_compatibility_string:{compatibility_string}")
+
+    if "final class InteractionSessionRuntimeBundleFactory" not in runtime_bundle_factory_text:
+        errors.append("runtime_bundle_factory_missing_type")
+    if "static InteractionSessionRuntimeBundle createRuntimeBundleFromServices(" not in runtime_bundle_factory_text:
+        errors.append("runtime_bundle_factory_missing_composite_method")
+
+    if "createRuntimeBundleFromServicesRetainsServiceReferences" not in runtime_bundle_factory_test_text:
+        errors.append("runtime_bundle_factory_test_missing_mapping_case")
+
+    if errors:
+        print("[phase90-interaction-session-runtime-bundle-factory-extraction] FAILED")
+        for error in errors:
+            print(f"[phase90-interaction-session-runtime-bundle-factory-extraction] ERROR {error}")
+        return 1
+
+    print(
+        "[phase90-interaction-session-runtime-bundle-factory-extraction] OK: interaction session runtime bundle factory extraction Phase 90 baseline is enforced."
+    )
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "xptool"
+version = "0.1.0"
+description = "XPTool runtime planner over snapshot and command NDJSON buses."
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+xptool = "runelite_planner.main:main"
+xptool-gui = "runelite_planner.gui:main"
+xptool-fishing-gui = "runelite_planner.fishing_gui:main"
+xptool-kpi = "runelite_planner.kpi_dashboard:main"
+xptool-scorecard = "runelite_planner.project_scorecard:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+

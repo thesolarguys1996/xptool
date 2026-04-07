@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.xptool'
+version = '0.1.0'
+
+def runeLiteVersion = findProperty('runeLiteVersion') ?: '1.12.17'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url = uri('https://repo.runelite.net')
+    }
+}
+
+dependencies {
+    compileOnly "net.runelite:client:${runeLiteVersion}"
+
+    testRuntimeOnly "net.runelite:client:${runeLiteVersion}"
+    testImplementation 'com.google.code.gson:gson:2.10.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+}
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 11
+}
+
+tasks.named('jar').configure {
+    manifest {
+        attributes(
+            'Premain-Class': 'com.xptool.bridge.BridgeAgent',
+            'Agent-Class': 'com.xptool.bridge.BridgeAgent',
+            'Can-Redefine-Classes': 'false',
+            'Can-Retransform-Classes': 'false'
+        )
+    }
+}

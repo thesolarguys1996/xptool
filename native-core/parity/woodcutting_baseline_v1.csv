@@ -1,0 +1,8 @@
+# tick,dispatched,reason_code,target_id
+10,1,woodcutting_dispatch_target_selected,1001
+11,0,cooldown_active,1002
+12,1,woodcutting_dispatch_repeat_reroute,1002
+13,0,no_intent_repeat_blocked_no_alternate,-1
+14,0,no_intent_repeat_blocked_no_alternate,-1
+15,0,no_intent_no_target_candidate,-1
+16,1,woodcutting_dispatch_target_selected,1003
