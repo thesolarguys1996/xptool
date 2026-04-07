@@ -1125,3 +1125,10 @@ Phase status board: `docs/NATIVE_CLIENT_PHASE_STATUS.md`
 - [x] Define Phase 224 bundle-B runtime guard continuity scope and completion gates.
 - [x] Define Phase 225 bundle-B status synchronization scope and completion gates.
 - [x] Run bundled verification/signoff for Phases 221-226 using `python scripts/verify_migration.py --bundle 221-226 --require-complete` and record `PHASE 226 COMPLETE`.
+
+- [x] Define Phase 227 bundle-C registry expansion scope and completion gates.
+- [x] Define Phase 228 bundle-C archive continuity scope and completion gates.
+- [x] Define Phase 229 bundle-C command-surface consolidation scope and completion gates.
+- [x] Define Phase 230 bundle-C runtime guard continuity scope and completion gates.
+- [x] Define Phase 231 bundle-C status synchronization scope and completion gates.
+- [x] Run bundled verification/signoff for Phases 227-232 using `python scripts/verify_migration.py --bundle 227-232 --require-complete` and record `PHASE 232 COMPLETE`.

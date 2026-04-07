@@ -21,6 +21,17 @@
         225,
         226
       ]
+    },
+    "227-232": {
+      "label": "Bigger Pass C",
+      "phases": [
+        227,
+        228,
+        229,
+        230,
+        231,
+        232
+      ]
     }
   },
   "phases": {
@@ -138,6 +149,73 @@
     },
     "226": {
       "title": "Bundle B Signoff",
+      "checks": [
+        "current_phase_snapshot",
+        "phase_registry_exists",
+        "tasks_phase_command_consolidation"
+      ],
+      "evidenceDocs": [
+        "docs/migration/current-phase.md",
+        "docs/NATIVE_CLIENT_PHASE_STATUS.md",
+        "TASKS.md"
+      ]
+    },
+    "227": {
+      "title": "Bundle C Registry Expansion",
+      "checks": [
+        "phase_registry_exists",
+        "docs_hierarchy"
+      ],
+      "evidenceDocs": [
+        "docs/migration/phase-registry.json",
+        "docs/migration/overview.md",
+        "docs/migration/checklists.md"
+      ]
+    },
+    "228": {
+      "title": "Bundle C Archive Continuity",
+      "checks": [
+        "archive_integrity",
+        "legacy_phase_verifier_archive"
+      ],
+      "evidenceDocs": [
+        "docs/migration/archive/README.md",
+        "scripts/migration/archive/phase_verifiers/verify_phase119_interaction_session_factory_runtime_bundle_factory_extraction.py"
+      ]
+    },
+    "229": {
+      "title": "Bundle C Command Surface Consolidation",
+      "checks": [
+        "tasks_phase_command_consolidation",
+        "phase_registry_exists"
+      ],
+      "evidenceDocs": [
+        "TASKS.md",
+        "scripts/verify_migration.py"
+      ]
+    },
+    "230": {
+      "title": "Bundle C Runtime Guard Continuity",
+      "checks": [
+        "runtime_bundle_factory"
+      ],
+      "evidenceDocs": [
+        "runelite-plugin/src/main/java/com/xptool/sessions/InteractionSessionFactoryRuntimeBundleFactory.java"
+      ]
+    },
+    "231": {
+      "title": "Bundle C Status Synchronization",
+      "checks": [
+        "current_phase_snapshot",
+        "phase_registry_exists"
+      ],
+      "evidenceDocs": [
+        "docs/migration/current-phase.md",
+        "docs/NATIVE_CLIENT_PHASE_STATUS.md"
+      ]
+    },
+    "232": {
+      "title": "Bundle C Signoff",
       "checks": [
         "current_phase_snapshot",
         "phase_registry_exists",

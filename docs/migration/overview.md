@@ -23,6 +23,7 @@ Use one migration verifier command:
 python scripts/verify_migration.py --phase 119
 python scripts/verify_migration.py --bundle 215-220 --require-complete
 python scripts/verify_migration.py --bundle 221-226 --require-complete
+python scripts/verify_migration.py --bundle 227-232 --require-complete
 python scripts/verify_migration.py --check runtime_bundle_factory
 python scripts/verify_migration.py --list
 ```
